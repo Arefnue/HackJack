@@ -23,6 +23,7 @@ namespace DeckBuilding.Managers
         public Camera mainCam;
         public LayerMask selectableLayer;
         public PlayerController playerController;
+        public MalfunctionController malfunctionController;
         public Transform playerPos;
         public List<Transform> enemyPosList;
         public SoundProfile finalSoundProfile;
