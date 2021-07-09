@@ -6,6 +6,24 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: d1c3109bdb54ad54c8a2b2838528e640
+    path: Assets/DeckBuilding/Scenes/MainMenu.unity
+    guid: d953d2e0e48f34d4f95d43083da214ce
+  - enabled: 1
+    path: Assets/DeckBuilding/Scenes/WinScreen.unity
+    guid: a5ccc9bffe3bb2e4485acf0c5b891344
+  - enabled: 1
+    path: Assets/DeckBuilding/Scenes/LoseScreen.unity
+    guid: 9040958e26a96564abaf7667d66c8e53
+  - enabled: 1
+    path: Assets/DeckBuilding/Scenes/CombatScene.unity
+    guid: 8bda66123e5789e4dbabe271dabf2439
+  - enabled: 1
+    path: Assets/DeckBuilding/Scenes/CombatScene 1.unity
+    guid: 6c7736ca37e02e5478722cc8579c6808
+  - enabled: 1
+    path: Assets/DeckBuilding/Scenes/CombatScene 2.unity
+    guid: 54fd5eb5f6828bd4a99844fc50b833f6
+  - enabled: 1
+    path: Assets/DeckBuilding/Scenes/Final.unity
+    guid: 95632d1cd790dde44aac6bfdd0e1fd16
   m_configObjects: {}
