@@ -13,13 +13,13 @@ namespace DeckBuilding.Card
             do
             {
                 _myChoiceProfile = GameManager.instance.choiceCardList[Random.Range(0, GameManager.instance.choiceCardList.Count)];
-                if (LevelManager.instance._sameChoiceContainer.Count>= GameManager.instance.choiceCardList.Count)
+                if (HandManager.instance.sameChoiceContainerList.Count>= GameManager.instance.choiceCardList.Count)
                 {
                     break;
                 }
-            } while (LevelManager.instance._sameChoiceContainer.Contains(_myChoiceProfile.myID));
+            } while (HandManager.instance.sameChoiceContainerList.Contains(_myChoiceProfile.myID));
             
-            LevelManager.instance._sameChoiceContainer.Add(_myChoiceProfile.myID);
+            HandManager.instance.sameChoiceContainerList.Add(_myChoiceProfile.myID);
             var clone =GameManager.instance.BuildAndGetCard(_myChoiceProfile.myID,cardTransform);
             GameManager.instance.choiceContainer.Add(clone);
         }
@@ -27,7 +27,7 @@ namespace DeckBuilding.Card
         public void OnChoice()
         {
             GameManager.instance.myDeckIDList.Add(_myChoiceProfile.myID);
-            LevelManager.instance._sameChoiceContainer.Clear();
+            HandManager.instance.sameChoiceContainerList.Clear();
             foreach (var cardBase in GameManager.instance.choiceContainer)
             {
                 Destroy(cardBase);

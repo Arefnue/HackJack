@@ -250,7 +250,7 @@ namespace DeckBuilding.Controllers
                     Quaternion.LookRotation(cardForward, cardUp), 80f * Time.deltaTime);
                 cardTransform.position = cardPos;
 
-                LevelManager.instance.HighlightCardTarget(heldCard.myProfile.myTargets);
+                HandManager.instance.HighlightCardTarget(heldCard.myProfile.myTargets);
 
                 //if (!canSelectCards || cardTransform.position.y <= transform.position.y + 0.5f) {
                 if (!HandManager.instance.canSelectCards || mouseInsideHand)
@@ -262,7 +262,7 @@ namespace DeckBuilding.Controllers
                     selected = -1;
                     heldCard = null;
 
-                    LevelManager.instance.DeactivateCardHighlights();
+                    HandManager.instance.DeactivateCardHighlights();
 
                     return;
                 }
@@ -278,7 +278,7 @@ namespace DeckBuilding.Controllers
             if (mouseButtonUp)
             {
                 //Remove highlights
-                LevelManager.instance.DeactivateCardHighlights();
+                HandManager.instance.DeactivateCardHighlights();
                 //todo buraları toparla
                 if (heldCard.myProfile.myTargets == CardSO.CardTargets.Enemy)
                 {

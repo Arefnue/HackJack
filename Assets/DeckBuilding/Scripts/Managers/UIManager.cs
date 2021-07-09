@@ -26,8 +26,8 @@ namespace DeckBuilding.Managers
 
         public void SetPileTexts()
         {
-            drawPileText.text = $"{LevelManager.instance.drawPile.Count.ToString()}";
-            discardPileText.text = $"{LevelManager.instance.discardPile.Count.ToString()}";
+            drawPileText.text = $"{HandManager.instance.drawPile.Count.ToString()}";
+            discardPileText.text = $"{HandManager.instance.discardPile.Count.ToString()}";
             manaText.text = $"{HandManager.instance.mana.ToString()}";
         }
 

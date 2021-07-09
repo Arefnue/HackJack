@@ -53,7 +53,7 @@ namespace DeckBuilding.Controllers
         public void OnDeath()
         { 
             AudioManager.instance.PlayOneShot(deathSoundProfile.GetRandomClip());
-            LevelManager.instance.OnEnemyDeath();
+            LevelManager.instance.OnEnemyDeath(this);
             Destroy(gameObject);
         }
         
@@ -277,7 +277,7 @@ namespace DeckBuilding.Controllers
                 yield return waitFrame;
             }
             AudioManager.instance.PlayOneShot(randomAction.mySoundProfile.GetRandomClip());
-            LevelManager.instance.ExhaustRandomCard();
+            HandManager.instance.ExhaustRandomCard();
             timer = 0f;
             while (true)
             {

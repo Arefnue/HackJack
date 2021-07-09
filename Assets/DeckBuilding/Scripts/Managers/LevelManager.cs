@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using DeckBuilding.Card;
 using DeckBuilding.Controllers;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -11,7 +10,7 @@ namespace DeckBuilding.Managers
     public class LevelManager : MonoBehaviour
     {
         public static LevelManager instance;
-        
+
         public enum LevelState
         {
             Prepare,
@@ -19,162 +18,104 @@ namespace DeckBuilding.Managers
             EnemyTurn,
             Finished
         }
-        
-        public int drawCount= 4;
-        private LevelState _currentLevelState;
-        public LevelState CurrentLevelState
-        {
-            get { return _currentLevelState;}
-            set
-            {
-                switch (value)
-                {
-                    case LevelState.Prepare:
-                        break;
-                    case LevelState.PlayerTurn:
-                        HandManager.instance.mana = 3;
-                        DrawCards(drawCount);
-                        playerController.myHealth.TakeDamage(playerController.myHealth.poisonStack,true);
-                        
-                        playerController.myHealth.ClearBlock();
-                        foreach (var currentEnemy in currentEnemies)
-                        {
-                            currentEnemy.ShowNextAction();
-                        }
-                        
-                        HandManager.instance.canSelectCards = true;
-                        break;
-                    case LevelState.EnemyTurn:
-                        DiscardHand();
 
-                        StartCoroutine(nameof(EnemyTurnRoutine));
-                        HandManager.instance.canSelectCards = false;
-                        break;
-                    case LevelState.Finished:
-                        HandManager.instance.canSelectCards = false;
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException(nameof(value), value, null);
-                }
-
-                _currentLevelState = value;
-            }
-            
-        }
-
-        private IEnumerator EnemyTurnRoutine()
-        {
-            var waitDelay = new WaitForSeconds(1/currentEnemies.Count);
-
-            foreach (var currentEnemy in currentEnemies)
-            {
-                currentEnemy.myHealth.TakeDamage(currentEnemy.myHealth.poisonStack,true);
-                currentEnemy.myHealth.ClearBlock();
-                yield return currentEnemy.StartCoroutine(nameof(EnemyBase.ActionRoutine));
-                yield return waitDelay;
-            }
-            CurrentLevelState = LevelState.PlayerTurn;
-        }
-        
-        
+        [Header("Settings")]
         public Camera mainCam;
         public LayerMask selectableLayer;
-        public List<EnemyBase> levelEnemyList;
-        
         public PlayerController playerController;
         public Transform playerPos;
         public List<Transform> enemyPosList;
-        public Transform choiceParent;
-        public List<Choice> choicesList;
-        public bool isFinalLevel;
-        [HideInInspector] public List<EnemyBase> currentEnemies = new List<EnemyBase>();
-        [HideInInspector] public List<int> _sameChoiceContainer = new List<int>();
-        
-        [HideInInspector]public List<int> drawPile = new List<int>();
-        [HideInInspector]public List<int> handPile = new List<int>();
-        [HideInInspector]public List<int> discardPile = new List<int>();
-
-        public Transform discardTransform;
-        public Transform drawTransform;
-
         public SoundProfile finalSoundProfile;
+       
+        [Header("Level")]
+        public List<EnemyBase> levelEnemyList;
+        public bool isFinalLevel;
+
+        
+        [HideInInspector] public List<EnemyBase> currentEnemies = new List<EnemyBase>();
+        
+        public LevelState CurrentLevelState
+        {
+            get => _currentLevelState;
+            set
+            {
+                ExecuteLevelState(value);
+
+                _currentLevelState = value;
+            }
+        }
+        private LevelState _currentLevelState;
+
+        #region Setup
+
         private void Awake()
         {
             instance = this;
             BuildEnemies();
             CurrentLevelState = LevelState.Prepare;
-            
         }
 
         private void Start()
         {
-           OnLevelStart();
+            OnLevelStart();
         }
 
-        public void BuildEnemies()
+        private void ExecuteLevelState(LevelState value)
         {
-            for (int i = 0; i < levelEnemyList.Count; i++)
+            switch (value)
             {
-                var clone = Instantiate(levelEnemyList[i], enemyPosList.Count >= i ? enemyPosList[i] : enemyPosList[0]);
-                currentEnemies.Add(clone);
+                case LevelState.Prepare:
+                    break;
+                case LevelState.PlayerTurn:
+
+                    HandManager.instance.mana = 3;
+                    HandManager.instance.DrawCards(HandManager.instance.drawCount);
+                    playerController.myHealth.TakeDamage(playerController.myHealth.poisonStack, true);
+                    playerController.myHealth.ClearBlock();
+
+                    foreach (var currentEnemy in currentEnemies) currentEnemy.ShowNextAction();
+
+                    HandManager.instance.canSelectCards = true;
+
+                    break;
+                case LevelState.EnemyTurn:
+
+                    HandManager.instance.DiscardHand();
+
+                    StartCoroutine(nameof(EnemyTurnRoutine));
+                    HandManager.instance.canSelectCards = false;
+
+                    break;
+                case LevelState.Finished:
+
+                    HandManager.instance.canSelectCards = false;
+
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(value), value, null);
             }
         }
+
+        #endregion
+
+        #region Public Methods
 
         public void EndTurn()
         {
             CurrentLevelState = LevelState.EnemyTurn;
         }
 
-        public void SetGameDeck()
+        public void OnEnemyDeath(EnemyBase targetEnemy)
         {
-            foreach (var i in GameManager.instance.myDeckIDList)
+            currentEnemies.Remove(targetEnemy);
+            if (currentEnemies.Count <= 0)
             {
-                drawPile.Add(i);
-            }
-        }
-        
-        public void DrawCards(int drawCount)
-        {
-            var currentDrawCount = 0;
-            for (int i = 0; i < drawCount; i++)
-            {
-                if (drawPile.Count<=0)
-                {
-                    var nDrawCount = drawCount - currentDrawCount;
-                    if (nDrawCount>=discardPile.Count)
-                    {
-                        nDrawCount = discardPile.Count;
-                    }
-                    ReshuffleDiscardPile();
-                    DrawCards(nDrawCount);
-                    break;
-                }
+                playerController.myHealth.SavePlayerStats();
+                if (isFinalLevel)
+                    OnFinal();
                 else
-                {
-                    var randomCard = drawPile[Random.Range(0,drawPile.Count)];
-                    var clone = GameManager.instance.BuildAndGetCard(randomCard,drawTransform);
-                    HandManager.instance.handController.AddCardToHand(clone);
-                    handPile.Add(randomCard);
-                    drawPile.Remove(randomCard);
-                    currentDrawCount++;
-                    UIManager.instance.SetPileTexts();
-                }
-                
+                    OnChoiceStart();
             }
-        }
-
-        public void OnEnemyDeath()
-        {
-            playerController.myHealth.SavePlayerStats();
-            if (isFinalLevel)
-            {
-                OnFinal();
-            }
-            else
-            {
-                OnChoiceStart();
-            }
-            
         }
 
         public void OnPlayerDeath()
@@ -182,205 +123,98 @@ namespace DeckBuilding.Managers
             LoseGame();
         }
 
-        public void IncreaseMana(int target)
-        {
-            HandManager.instance.mana += target;
-            UIManager.instance.SetPileTexts();
-        }
-
         public void LoseGame()
         {
             CurrentLevelState = LevelState.Finished;
-            DiscardHand();
-            discardPile.Clear();
-            drawPile.Clear();
-            handPile.Clear();
+            HandManager.instance.DiscardHand();
+            HandManager.instance.discardPile.Clear();
+            HandManager.instance.drawPile.Clear();
+            HandManager.instance.handPile.Clear();
             HandManager.instance.handController.hand.Clear();
             UIManager.instance.gameCanvas.SetActive(false);
             UIManager.instance.losePanel.SetActive(true);
         }
 
-        public void OnFinal()
+        #endregion
+
+        #region Private Methods
+
+        private void BuildEnemies()
+        {
+            for (var i = 0; i < levelEnemyList.Count; i++)
+            {
+                var clone = Instantiate(levelEnemyList[i], enemyPosList.Count >= i ? enemyPosList[i] : enemyPosList[0]);
+                currentEnemies.Add(clone);
+            }
+        }
+
+        private void OnFinal()
         {
             CurrentLevelState = LevelState.Finished;
-            DiscardHand();
-            discardPile.Clear();
-            drawPile.Clear();
-            handPile.Clear();
+            HandManager.instance.DiscardHand();
+            HandManager.instance.discardPile.Clear();
+            HandManager.instance.drawPile.Clear();
+            HandManager.instance.handPile.Clear();
             HandManager.instance.handController.hand.Clear();
             UIManager.instance.gameCanvas.SetActive(false);
             UIManager.instance.winPanel.SetActive(true);
         }
-        
-        public void OnChoiceStart()
+
+        private void OnChoiceStart()
         {
             CurrentLevelState = LevelState.Finished;
-            foreach (var choice in choicesList)
-            {
-                choice.DetermineChoice();
-            }
-            DiscardHand();
-            discardPile.Clear();
-            drawPile.Clear();
-            handPile.Clear();
+            foreach (var choice in HandManager.instance.choicesList) choice.DetermineChoice();
+            HandManager.instance.DiscardHand();
+            HandManager.instance.discardPile.Clear();
+            HandManager.instance.drawPile.Clear();
+            HandManager.instance.handPile.Clear();
             HandManager.instance.handController.hand.Clear();
-            choiceParent.gameObject.SetActive(true);
+            HandManager.instance.choiceParent.gameObject.SetActive(true);
             UIManager.instance.gameCanvas.SetActive(false);
         }
 
-        private IEnumerator FinalSfxRoutine()
-        {
-            while (CurrentLevelState!= LevelState.Finished)
-            {
-                yield return new WaitForSeconds(Random.Range(5,15));
-                AudioManager.instance.PlayOneShot(finalSoundProfile.GetRandomClip());
-            }
-        }
-        
-        public void OnLevelStart()
+        private void OnLevelStart()
         {
             if (isFinalLevel)
             {
                 StartCoroutine("FinalSfxRoutine");
                 AudioManager.instance.PlayMusic(AudioManager.instance.bossMusic);
             }
-           
-            SetGameDeck();
-            choiceParent.gameObject.SetActive(false);
+
+            HandManager.instance.SetGameDeck();
+            HandManager.instance.choiceParent.gameObject.SetActive(false);
             UIManager.instance.gameCanvas.SetActive(true);
             CurrentLevelState = LevelState.PlayerTurn;
         }
-        
-        public void DiscardHand()
+
+        #endregion
+
+        #region Routines
+
+        private IEnumerator EnemyTurnRoutine()
         {
-            foreach (var cardBase in HandManager.instance.handController.hand)
-            {
-                cardBase.Discard();
-            }
-            HandManager.instance.handController.hand.Clear();
-        }
+            var waitDelay = new WaitForSeconds(1 / currentEnemies.Count);
 
-        public void ExhaustRandomCard()
-        {
-            var targetCard = 0;
-            if (drawPile.Count>0)
-            {
-                targetCard = drawPile[Random.Range(0, drawPile.Count)];
-                StartCoroutine(ExhaustCardRoutine(targetCard, drawTransform, currentEnemies[0].transform));
-            }
-            else if (discardPile.Count>0)
-            {
-                targetCard = discardPile[Random.Range(0, discardPile.Count)];
-                StartCoroutine(ExhaustCardRoutine(targetCard, discardTransform, currentEnemies[0].transform));
-
-            }
-            else if (handPile.Count>0)
-            {
-                targetCard = handPile[Random.Range(0, handPile.Count)];
-                CardBase tCard = HandManager.instance.handController.hand[0];
-                foreach (var cardBase in HandManager.instance.handController.hand)
-                {
-                    if (cardBase.myProfile.myID == targetCard)
-                    {
-                        tCard = cardBase;
-                        break;
-                    }
-                }
-
-                StartCoroutine(ExhaustCardRoutine(targetCard, tCard.transform, currentEnemies[0].transform));
-                HandManager.instance.handController.hand?.Remove(tCard);
-                Destroy(tCard.gameObject);
-            }
-            else
-            {
-                LoseGame();
-            }
-
-            drawPile?.Remove(targetCard);
-            handPile?.Remove(targetCard);
-            discardPile?.Remove(targetCard);
-            UIManager.instance.SetPileTexts();
-        }
-
-        private IEnumerator ExhaustCardRoutine(int targetID,Transform startTransform,Transform endTransform)
-        {
-            var waitFrame = new WaitForEndOfFrame();
-            var timer = 0f;
-
-            var card = GameManager.instance.BuildAndGetCard(targetID, startTransform);
-            card.transform.SetParent(endTransform);
-            var startPos = card.transform.localPosition;
-            var endPos = Vector3.zero;
-
-            var startScale = card.transform.localScale;
-            var endScale = Vector3.zero;
-            
-            var startRot = transform.localRotation;
-            var endRot = Quaternion.Euler(Random.value * 360, Random.value * 360, Random.value * 360);
-
-            
-            while (true)
-            {
-                timer += Time.deltaTime*5;
-
-                card.transform.localPosition = Vector3.Lerp(startPos, endPos, timer);
-                card.transform.localScale = Vector3.Lerp(startScale, endScale, timer);
-                card.transform.localRotation = Quaternion.Lerp(startRot,endRot,timer);
-                
-                if (timer>=1f)
-                {
-                    break;
-                }
-
-                yield return waitFrame;
-            }
-            Destroy(card.gameObject);
-        }
-        
-        private void ReshuffleDiscardPile()
-        {
-            foreach (var i in discardPile)
-            {
-                drawPile.Add(i);
-            }
-            discardPile.Clear();
-        }
-
-        public void DiscardCard(CardBase targetCard)
-        {
-            handPile.Remove(targetCard.myProfile.myID);
-            discardPile.Add(targetCard.myProfile.myID);
-            UIManager.instance.SetPileTexts();
-        }
-        
-        
-        public void HighlightCardTarget(CardSO.CardTargets targetTargets)
-        {
-            switch (targetTargets)
-            {
-                case CardSO.CardTargets.Enemy:
-                    foreach (var currentEnemy in currentEnemies)
-                    {
-                        currentEnemy.highlightObject.SetActive(true);
-                    }
-                    break;
-                case CardSO.CardTargets.Player:
-                    playerController.playerHighlight.SetActive(true);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(targetTargets), targetTargets, null);
-            }
-        }
-
-        public void DeactivateCardHighlights()
-        {
             foreach (var currentEnemy in currentEnemies)
             {
-                currentEnemy.highlightObject.SetActive(false);
+                currentEnemy.myHealth.TakeDamage(currentEnemy.myHealth.poisonStack, true);
+                currentEnemy.myHealth.ClearBlock();
+                yield return currentEnemy.StartCoroutine(nameof(EnemyBase.ActionRoutine));
+                yield return waitDelay;
             }
-            
-            playerController.playerHighlight.SetActive(false);
+
+            CurrentLevelState = LevelState.PlayerTurn;
         }
 
+        private IEnumerator FinalSfxRoutine()
+        {
+            while (CurrentLevelState != LevelState.Finished)
+            {
+                yield return new WaitForSeconds(Random.Range(5, 15));
+                AudioManager.instance.PlayOneShot(finalSoundProfile.GetRandomClip());
+            }
+        }
+
+        #endregion
     }
 }

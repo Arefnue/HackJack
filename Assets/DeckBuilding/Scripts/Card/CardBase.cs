@@ -59,12 +59,12 @@ namespace DeckBuilding.Card
                 CardActions.PlayCardAction(targetEnemy, playerAction);
                 AudioManager.instance.PlayOneShot(playerAction.mySoundProfile.GetRandomClip());
             }
-            LevelManager.instance.DiscardCard(this);
+            HandManager.instance.DiscardCard(this);
             StartCoroutine("DiscardRoutine");
         }
         public void Discard()
         {
-            LevelManager.instance.DiscardCard(this);
+            HandManager.instance.DiscardCard(this);
             StartCoroutine("DiscardRoutine");
         }
         public void Exhaust()
@@ -95,7 +95,7 @@ namespace DeckBuilding.Card
             var waitFrame = new WaitForEndOfFrame();
             var timer = 0f;
             
-            transform.SetParent(LevelManager.instance.discardTransform);
+            transform.SetParent(HandManager.instance.discardTransform);
             
             var startPos = transform.localPosition;
             var endPos = Vector3.zero;

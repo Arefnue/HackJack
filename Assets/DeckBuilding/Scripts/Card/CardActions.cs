@@ -49,7 +49,7 @@ namespace DeckBuilding.Card
 
          private static void GainMana(PlayerAction playerAction)
         {
-            LevelManager.instance.IncreaseMana((int) playerAction.value);
+            HandManager.instance.IncreaseMana((int) playerAction.value);
         }
 
         private static void ReversePoisonToHeal(PlayerAction playerAction)
@@ -61,7 +61,7 @@ namespace DeckBuilding.Card
 
         private static void DrawCards(PlayerAction playerAction)
         {
-            LevelManager.instance.DrawCards((int) playerAction.value);
+            HandManager.instance.DrawCards((int) playerAction.value);
         }
 
         private static void GainMaxHealth(PlayerAction playerAction)
