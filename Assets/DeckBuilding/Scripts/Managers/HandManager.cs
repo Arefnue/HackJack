@@ -46,6 +46,11 @@ namespace DeckBuilding.Managers
             {
                 DrawCards(2);
             }
+
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                LevelManager.instance.malfunctionController.GetRandomMalfunction();
+            }
 #endif
            
         }

@@ -145,8 +145,8 @@ namespace DeckBuilding.Managers
             {
                 enemyBase.transform.SetParent(enemyPosList[0]);
                 var localPos = enemyBase.transform.localPosition;
-                localPos.x = Random.Range(-0.2f, 0.2f);
-                localPos.y = Random.Range(-0.1f, 0.1f);
+                localPos.x = Random.Range(-0.1f, 0.1f);
+                localPos.y = Random.Range(-0.02f, 0.02f);
                 enemyBase.transform.localPosition = localPos;
             }
         }

@@ -45,10 +45,14 @@ namespace DeckBuilding.Controllers
             if (randomMalfunction != null)
             {
                 ApplyStatus(randomMalfunction);
-                
                 UIManager.instance.UpdateMalfunctionName(currentMalfunction);
             }
+            else
+            {
+                ApplyStatus(allMalfunctions.RandomItem());
+            }
             
+           
         }
         
         
@@ -83,15 +87,14 @@ namespace DeckBuilding.Controllers
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+            
+            UpdateStatus(targetMalfunction);
         }
 
         public void ReleaseStatus(MalfunctionBase targetMalfunction)
         {
-            if (currentMalfunction == null)
-            {
-                return;
-            }
-            currentMalfunction = null;
+            
+            //currentMalfunction = null;
             switch (targetMalfunction.myMalfunctionType)
             {
                 case MalfunctionBase.MalfunctionType.VisualDisorder:
@@ -104,16 +107,26 @@ namespace DeckBuilding.Controllers
                     LevelManager.instance.DecompressEnemies();
                     break;
                 case MalfunctionBase.MalfunctionType.LackOfEmpathy:
-                    UIManager.instance.UpdateHealthText();
-                    foreach (var currentEnemy in LevelManager.instance.currentEnemies)
-                    {
-                        currentEnemy.myHealth.ChangeHealthText();
-                    }
-                    LevelManager.instance.playerController.myHealth.ChangeHealthText();
+                    // UIManager.instance.UpdateHealthText();
+                    // foreach (var currentEnemy in LevelManager.instance.currentEnemies)
+                    // {
+                    //     currentEnemy.myHealth.ChangeHealthText();
+                    // }
+                    // LevelManager.instance.playerController.myHealth.ChangeHealthText();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+
+        public void UpdateStatus(MalfunctionBase targetMalfunction)
+        {
+            UIManager.instance.UpdateHealthText();
+            foreach (var currentEnemy in LevelManager.instance.currentEnemies)
+            {
+                currentEnemy.myHealth.ChangeHealthText();
+            }
+            LevelManager.instance.playerController.myHealth.ChangeHealthText();
         }
     }
     
