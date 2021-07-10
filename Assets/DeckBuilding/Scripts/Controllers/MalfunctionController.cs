@@ -15,6 +15,10 @@ namespace DeckBuilding.Controllers
         public int maxMalfunctionTurn = 5;
         [HideInInspector] public int malfunctionTurnCounter;
 
+        private void Awake()
+        {
+            //currentMalfunction = allMalfunctions[0];
+        }
 
         public void CountMalfunction()
         {

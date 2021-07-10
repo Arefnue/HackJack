@@ -207,8 +207,6 @@ namespace DeckBuilding.Managers
             }
             
             malfunctionController.GetRandomMalfunction();
-            
-            
             HandManager.instance.SetGameDeck();
             HandManager.instance.choiceParent.gameObject.SetActive(false);
             UIManager.instance.gameCanvas.SetActive(true);
