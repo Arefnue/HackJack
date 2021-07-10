@@ -24,7 +24,10 @@ namespace DeckBuilding.Managers
         
         public float playerCurrentHealth=100;
         public float playerMaxHealth=100;
-
+        public int currentGold;
+        public string playerName;
+        
+        
         public bool isRandomHand;
         private void Awake()
         {
@@ -99,6 +102,11 @@ namespace DeckBuilding.Managers
             playerMaxHealth += value;
             LevelManager.instance.playerController.myHealth.maxHealth = playerMaxHealth;
             LevelManager.instance.playerController.myHealth.ChangeHealthText();
+        }
+
+        public int GetCurrentLevel()
+        {
+            return SceneManager.GetActiveScene().buildIndex-1;
         }
         public void NextLevel()
         {

@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,6 +16,13 @@ namespace DeckBuilding.Managers
         public GameObject winPanel;
         public GameObject losePanel;
 
+        public TextMeshProUGUI healthText;
+        public TextMeshProUGUI goldText;
+        public TextMeshProUGUI nameText;
+        public TextMeshProUGUI roomText;
+        public TextMeshProUGUI malfunctionNameText;
+        public TextMeshProUGUI malfunctionCounterText;
+
         public GameObject randomizedDeck;
         private void Awake()
         {
@@ -24,11 +32,27 @@ namespace DeckBuilding.Managers
             randomizedDeck.SetActive(GameManager.instance.isRandomHand);
         }
 
+
+        private void Start()
+        {
+            UpdateAllNotificationText();
+        }
+
         public void SetPileTexts()
         {
             drawPileText.text = $"{HandManager.instance.drawPile.Count.ToString()}";
             discardPileText.text = $"{HandManager.instance.discardPile.Count.ToString()}";
             manaText.text = $"{HandManager.instance.mana.ToString()}";
+        }
+
+        public void UpdateAllNotificationText()
+        {
+            healthText.text =
+                $"{LevelManager.instance.playerController.myHealth.ToString()}/{GameManager.instance.playerMaxHealth.ToString()}";
+            goldText.text = $"{GameManager.instance.currentGold.ToString()}";
+            nameText.text = $"{GameManager.instance.playerName}";
+            roomText.text = $"Room {GameManager.instance.GetCurrentLevel().ToString()}";
+            
         }
 
         public void EndTurn()
