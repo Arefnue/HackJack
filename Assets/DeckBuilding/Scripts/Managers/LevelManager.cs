@@ -139,6 +139,27 @@ namespace DeckBuilding.Managers
             UIManager.instance.losePanel.SetActive(true);
         }
 
+        public void CompressEnemies()
+        {
+            foreach (var enemyBase in currentEnemies)
+            {
+                enemyBase.transform.SetParent(enemyPosList[0]);
+                var localPos = enemyBase.transform.localPosition;
+                localPos.x = Random.Range(-0.2f, 0.2f);
+                localPos.y = Random.Range(-0.1f, 0.1f);
+                enemyBase.transform.localPosition = localPos;
+            }
+        }
+
+        public void DecompressEnemies()
+        {
+            for (int i = 0; i < currentEnemies.Count; i++)
+            {
+                currentEnemies[i].transform.SetParent(enemyPosList[i]);
+                currentEnemies[i].transform.localPosition = Vector3.zero;
+            }
+        }
+
         #endregion
 
         #region Private Methods

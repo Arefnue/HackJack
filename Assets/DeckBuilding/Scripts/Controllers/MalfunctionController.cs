@@ -66,6 +66,7 @@ namespace DeckBuilding.Controllers
                 case MalfunctionBase.MalfunctionType.SuicidalViolence:
                     break;
                 case MalfunctionBase.MalfunctionType.CentralConcentration:
+                    LevelManager.instance.CompressEnemies();
                     break;
                 case MalfunctionBase.MalfunctionType.LackOfEmpathy:
                     break;
@@ -90,6 +91,7 @@ namespace DeckBuilding.Controllers
                 case MalfunctionBase.MalfunctionType.SuicidalViolence:
                     break;
                 case MalfunctionBase.MalfunctionType.CentralConcentration:
+                    LevelManager.instance.DecompressEnemies();
                     break;
                 case MalfunctionBase.MalfunctionType.LackOfEmpathy:
                     break;
