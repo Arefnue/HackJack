@@ -72,8 +72,15 @@ namespace DeckBuilding.Managers
 
         public void UpdateHealthText()
         {
-            healthText.text =
-                $"{LevelManager.instance.playerController.myHealth.maxHealth.ToString()}/{GameManager.instance.playerMaxHealth.ToString()}";
+            if (LevelManager.instance.malfunctionController.currentMalfunction.myMalfunctionType == MalfunctionBase.MalfunctionType.LackOfEmpathy)
+            {
+                healthText.text = $"???/???";
+            }
+            else
+            {
+                healthText.text = $"{LevelManager.instance.playerController.myHealth.maxHealth.ToString()}/{GameManager.instance.playerMaxHealth.ToString()}";
+            }
+            
         }
         public void UpdateMalfunctionName(MalfunctionBase targetMalfunction = null)
         {

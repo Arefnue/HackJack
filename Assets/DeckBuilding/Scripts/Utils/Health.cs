@@ -1,4 +1,5 @@
 ﻿using System;
+using DeckBuilding.Controllers;
 using DeckBuilding.Managers;
 using TMPro;
 using UnityEngine;
@@ -37,6 +38,7 @@ namespace DeckBuilding
             ClearBlock();
             ClearPoison();
             ChangeHealthText();
+           
         }
 
         public void SavePlayerStats()
@@ -140,6 +142,11 @@ namespace DeckBuilding
             if (isPlayer)
             {
                 UIManager.instance.UpdateHealthText();
+            }
+
+            if (LevelManager.instance.malfunctionController.currentMalfunction.myMalfunctionType == MalfunctionBase.MalfunctionType.LackOfEmpathy)
+            {
+                currentHealthText.text = $"???/???";
             }
             
             if (blockStack>0)

@@ -69,6 +69,12 @@ namespace DeckBuilding.Controllers
                     LevelManager.instance.CompressEnemies();
                     break;
                 case MalfunctionBase.MalfunctionType.LackOfEmpathy:
+                    UIManager.instance.UpdateHealthText();
+                    foreach (var currentEnemy in LevelManager.instance.currentEnemies)
+                    {
+                        currentEnemy.myHealth.ChangeHealthText();
+                    }
+                    LevelManager.instance.playerController.myHealth.ChangeHealthText();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -94,6 +100,12 @@ namespace DeckBuilding.Controllers
                     LevelManager.instance.DecompressEnemies();
                     break;
                 case MalfunctionBase.MalfunctionType.LackOfEmpathy:
+                    UIManager.instance.UpdateHealthText();
+                    foreach (var currentEnemy in LevelManager.instance.currentEnemies)
+                    {
+                        currentEnemy.myHealth.ChangeHealthText();
+                    }
+                    LevelManager.instance.playerController.myHealth.ChangeHealthText();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
