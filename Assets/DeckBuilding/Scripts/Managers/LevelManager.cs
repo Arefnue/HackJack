@@ -60,6 +60,7 @@ namespace DeckBuilding.Managers
         {
             OnLevelStart();
         }
+        
 
         private void ExecuteLevelState(LevelState value)
         {

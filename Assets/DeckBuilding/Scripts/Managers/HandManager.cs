@@ -39,6 +39,17 @@ namespace DeckBuilding.Managers
             instance = this;
         }
 
+        private void Update()
+        {
+#if UNITY_EDITOR
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                DrawCards(2);
+            }
+#endif
+           
+        }
+
         #endregion
 
         #region Public Methods
