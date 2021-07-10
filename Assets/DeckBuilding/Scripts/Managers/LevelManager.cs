@@ -70,6 +70,8 @@ namespace DeckBuilding.Managers
                     break;
                 case LevelState.PlayerTurn:
 
+                    malfunctionController.CountMalfunction();
+                    
                     HandManager.instance.mana = 3;
                     HandManager.instance.DrawCards(HandManager.instance.drawCount);
                     playerController.myHealth.TakeDamage(playerController.myHealth.poisonStack, true);
@@ -182,7 +184,10 @@ namespace DeckBuilding.Managers
                 StartCoroutine("FinalSfxRoutine");
                 AudioManager.instance.PlayMusic(AudioManager.instance.bossMusic);
             }
-
+            
+            malfunctionController.GetRandomMalfunction();
+            
+            
             HandManager.instance.SetGameDeck();
             HandManager.instance.choiceParent.gameObject.SetActive(false);
             UIManager.instance.gameCanvas.SetActive(true);

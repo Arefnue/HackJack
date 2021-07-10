@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using DeckBuilding.Card;
+using DeckBuilding.Controllers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
@@ -26,6 +27,7 @@ namespace DeckBuilding.Managers
         public float playerMaxHealth=100;
         public int currentGold;
         public string playerName;
+       
         
         
         public bool isRandomHand;
@@ -103,6 +105,8 @@ namespace DeckBuilding.Managers
             LevelManager.instance.playerController.myHealth.maxHealth = playerMaxHealth;
             LevelManager.instance.playerController.myHealth.ChangeHealthText();
         }
+
+        
 
         public int GetCurrentLevel()
         {

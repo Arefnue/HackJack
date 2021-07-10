@@ -2299,6 +2299,12 @@ MonoBehaviour:
   gameCanvas: {fileID: 2388636853734948943}
   winPanel: {fileID: 1640238214}
   losePanel: {fileID: 6887330766438226079}
+  healthText: {fileID: 3701450272858495024}
+  goldText: {fileID: 2576897327905506036}
+  nameText: {fileID: 7891595002126664511}
+  roomText: {fileID: 37465858193100716}
+  malfunctionNameText: {fileID: 4085559040213638908}
+  malfunctionCounterText: {fileID: 8994556450061119499}
   randomizedDeck: {fileID: 5760764790171049996}
 --- !u!1 &2388636854968383068
 GameObject:
@@ -2522,7 +2528,7 @@ GameObject:
   - component: {fileID: 3666975675948839534}
   - component: {fileID: 3701450272858495024}
   m_Layer: 0
-  m_Name: GoldText
+  m_Name: HealthText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2544,8 +2550,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 49.7, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 62.509, y: 0}
+  m_SizeDelta: {x: 25.617, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3666975675948839534
 CanvasRenderer:
@@ -2575,7 +2581,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 99/99
+  m_text: 999/999
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 06458e15bb52a3d4888584ee47db86af, type: 2}
   m_sharedMaterial: {fileID: 204756702410651482, guid: 06458e15bb52a3d4888584ee47db86af, type: 2}
@@ -3355,7 +3361,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 324.9, y: 0}
+  m_AnchoredPosition: {x: 345, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2420131320094334358
@@ -3656,7 +3662,7 @@ GameObject:
   - component: {fileID: 3554353019064867895}
   - component: {fileID: 8994556450061119499}
   m_Layer: 0
-  m_Name: RemainingTurn
+  m_Name: MalfunctionCounterText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

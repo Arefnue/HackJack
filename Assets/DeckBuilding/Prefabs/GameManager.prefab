@@ -69,4 +69,6 @@ MonoBehaviour:
   choiceContainer: []
   playerCurrentHealth: 100
   playerMaxHealth: 100
+  currentGold: 999
+  playerName: Jack
   isRandomHand: 0

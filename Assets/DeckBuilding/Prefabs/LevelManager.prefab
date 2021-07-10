@@ -123,7 +123,9 @@ MonoBehaviour:
   - {fileID: 6447578551529050431}
   - {fileID: 4499567592050563834}
   finalSoundProfile: {fileID: 11400000, guid: 878a9164ecb40de41bc561562f12d2fc, type: 2}
-  levelEnemyList: []
+  levelEnemyList:
+  - {fileID: 2924474335899651609, guid: f4d61cf01ae2f2a4eb4ef92cb53480c7, type: 3}
+  - {fileID: 2924474335899651609, guid: caf485d07cc86254c8831428f730a1f7, type: 3}
   isFinalLevel: 0
   currentEnemies: []
 --- !u!1 &4666622059495250647
@@ -377,6 +379,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8af4c4d6ed264be484bc088c638a040c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allMalfunctions:
+  - malfunctionName: Virtual Disorder
+    myMalfunctionType: 0
+  - malfunctionName: Reverse Draw
+    myMalfunctionType: 1
+  - malfunctionName: Suicidal Violence
+    myMalfunctionType: 2
+  - malfunctionName: Central Concentration
+    myMalfunctionType: 3
+  - malfunctionName: Lack of Empathy
+    myMalfunctionType: 4
+  currentMalfunction:
+    malfunctionName: 
+    myMalfunctionType: 0
+  maxMalfunctionTurn: 5
+  malfunctionTurnCounter: 0
 --- !u!1001 &4666622059139852140
 PrefabInstance:
   m_ObjectHideFlags: 0

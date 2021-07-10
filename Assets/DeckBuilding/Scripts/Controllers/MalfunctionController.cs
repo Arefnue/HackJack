@@ -1,15 +1,118 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using DeckBuilding.Managers;
+using NueExtentions;
+using UnityEngine;
 
 namespace DeckBuilding.Controllers
 {
     public class MalfunctionController : MonoBehaviour
     {
-        public MalfunctionBase currentMalfunction;
+        public List<MalfunctionBase> allMalfunctions;
+
+        [HideInInspector] public MalfunctionBase currentMalfunction;
+        public int maxMalfunctionTurn = 5;
+        [HideInInspector] public int malfunctionTurnCounter;
+
+
+        public void CountMalfunction()
+        {
+            malfunctionTurnCounter--;
+            if (malfunctionTurnCounter<=0)
+            {
+                malfunctionTurnCounter = maxMalfunctionTurn;
+                GetRandomMalfunction();
+            }
+            UIManager.instance.UpdateMalfunctionCounter();
+        }
+        
+        public void GetRandomMalfunction()
+        {
+            var randomMalfunction = allMalfunctions.RandomItem();
+            if (currentMalfunction != null)
+            {
+                if (currentMalfunction == randomMalfunction)
+                {
+                    randomMalfunction = allMalfunctions.FirstOrDefault(x => x != currentMalfunction);
+                }
+            }
+
+            if (randomMalfunction != null)
+            {
+                ApplyStatus(randomMalfunction);
+                
+                UIManager.instance.UpdateMalfunctionName(currentMalfunction);
+            }
+            
+        }
+        
+        
+        public void ApplyStatus(MalfunctionBase targetMalfunction)
+        {
+            if (currentMalfunction != null)
+            {
+                ReleaseStatus(currentMalfunction);
+            }
+            
+            currentMalfunction = targetMalfunction;
+
+            switch (targetMalfunction.myMalfunctionType)
+            {
+                case MalfunctionBase.MalfunctionType.VisualDisorder:
+                    break;
+                case MalfunctionBase.MalfunctionType.ReverseDraw:
+                    break;
+                case MalfunctionBase.MalfunctionType.SuicidalViolence:
+                    break;
+                case MalfunctionBase.MalfunctionType.CentralConcentration:
+                    break;
+                case MalfunctionBase.MalfunctionType.LackOfEmpathy:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        public void ReleaseStatus(MalfunctionBase targetMalfunction)
+        {
+            if (currentMalfunction == null)
+            {
+                return;
+            }
+            currentMalfunction = null;
+            switch (targetMalfunction.myMalfunctionType)
+            {
+                case MalfunctionBase.MalfunctionType.VisualDisorder:
+                    break;
+                case MalfunctionBase.MalfunctionType.ReverseDraw:
+                    break;
+                case MalfunctionBase.MalfunctionType.SuicidalViolence:
+                    break;
+                case MalfunctionBase.MalfunctionType.CentralConcentration:
+                    break;
+                case MalfunctionBase.MalfunctionType.LackOfEmpathy:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
     }
     
+    [Serializable]
     public class MalfunctionBase
     {
-        
+        public enum MalfunctionType
+        {
+            VisualDisorder,
+            ReverseDraw,
+            SuicidalViolence,
+            CentralConcentration,
+            LackOfEmpathy
+        }
+
+        public string malfunctionName;
+        public MalfunctionType myMalfunctionType;
     }
     
 }

@@ -1,4 +1,5 @@
 using System;
+using DeckBuilding.Controllers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -47,12 +48,42 @@ namespace DeckBuilding.Managers
 
         public void UpdateAllNotificationText()
         {
-            healthText.text =
-                $"{LevelManager.instance.playerController.myHealth.ToString()}/{GameManager.instance.playerMaxHealth.ToString()}";
-            goldText.text = $"{GameManager.instance.currentGold.ToString()}";
-            nameText.text = $"{GameManager.instance.playerName}";
-            roomText.text = $"Room {GameManager.instance.GetCurrentLevel().ToString()}";
+            UpdateHealthText();
+            UpdateGoldText();
+            UpdateNameText();
+            UpdateRoomText();
             
+        }
+
+        public void UpdateRoomText()
+        {
+            roomText.text = $"Room {GameManager.instance.GetCurrentLevel().ToString()}";
+        }
+
+        public void UpdateNameText()
+        {
+            nameText.text = $"{GameManager.instance.playerName}";
+        }
+
+        public void UpdateGoldText()
+        {
+            goldText.text = $"{GameManager.instance.currentGold.ToString()}";
+        }
+
+        public void UpdateHealthText()
+        {
+            healthText.text =
+                $"{LevelManager.instance.playerController.myHealth.maxHealth.ToString()}/{GameManager.instance.playerMaxHealth.ToString()}";
+        }
+        public void UpdateMalfunctionName(MalfunctionBase targetMalfunction = null)
+        {
+            var t = targetMalfunction == null ? "" : targetMalfunction.malfunctionName;
+            malfunctionNameText.text = $"Malfunction: {t}";
+        }
+        
+        public void UpdateMalfunctionCounter()
+        {
+            malfunctionCounterText.text = $"Next malfunction: {LevelManager.instance.malfunctionController.malfunctionTurnCounter.ToString()}";
         }
 
         public void EndTurn()

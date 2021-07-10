@@ -21,7 +21,8 @@ namespace DeckBuilding.Card
         public TextMeshProUGUI manaText;
         public Image frontImage;
         public Image backImage;
-        
+
+        public Sprite hideSprite;
         [HideInInspector]public CardSO myProfile;
         
         private Vector2 _dissolveOffset = new Vector2(0.1f, 0);
@@ -46,6 +47,14 @@ namespace DeckBuilding.Card
             descText.text = myProfile.myDescription;
             manaText.text = myProfile.myManaCost.ToString();
             frontImage.sprite = myProfile.mySprite;
+
+            if (LevelManager.instance.malfunctionController.currentMalfunction.myMalfunctionType == MalfunctionBase.MalfunctionType.VisualDisorder)
+            {
+                if (Random.value<=0.25f)
+                {
+                    Hide();
+                }
+            }
         }
 
         #endregion
@@ -71,6 +80,15 @@ namespace DeckBuilding.Card
         {
             StartCoroutine("Dissolve");
         }
+
+        public void Hide()
+        {
+            nameText.text = "cardProfile.name";
+            descText.text = "cardProfile.description";
+            manaText.text = "cardProfile.manaCost";
+            frontImage.sprite = hideSprite;
+        }
+        
         
         #endregion
         
