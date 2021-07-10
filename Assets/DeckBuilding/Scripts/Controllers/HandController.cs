@@ -291,7 +291,7 @@ namespace DeckBuilding.Controllers
                         {
                             if (HandManager.instance.canUseCards && HandManager.instance.mana >= heldCard.myProfile.myManaCost)
                             {
-                                HandManager.instance.mana -= heldCard.myProfile.myManaCost;
+                               
                                 heldCard.UseCard(enemy);
                             }
                             else
@@ -318,7 +318,7 @@ namespace DeckBuilding.Controllers
                 {
                     if (HandManager.instance.canUseCards && HandManager.instance.mana >= heldCard.myProfile.myManaCost)
                     {
-                        HandManager.instance.mana -= heldCard.myProfile.myManaCost;
+                        
                         heldCard.UseCard();
                     }
                     else

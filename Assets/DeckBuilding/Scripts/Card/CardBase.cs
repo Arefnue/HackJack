@@ -63,6 +63,7 @@ namespace DeckBuilding.Card
 
         public void UseCard(EnemyBase targetEnemy = null)
         {
+            SpendMana(myProfile.myManaCost);
             foreach (var playerAction in myProfile.playerActionList)
             {
                 CardActions.PlayCardAction(targetEnemy, playerAction);
@@ -87,6 +88,19 @@ namespace DeckBuilding.Card
             descText.text = "cardProfile.description";
             manaText.text = "cardProfile.manaCost";
             frontImage.sprite = hideSprite;
+        }
+
+        public void SpendMana(int value)
+        {
+            if (LevelManager.instance.malfunctionController.currentMalfunction.myMalfunctionType == MalfunctionBase.MalfunctionType.SuicidalViolence)
+            {
+                LevelManager.instance.playerController.myHealth.TakeDamage(value);
+            }
+            else
+            {
+                HandManager.instance.mana -= value;
+            }
+           
         }
         
         

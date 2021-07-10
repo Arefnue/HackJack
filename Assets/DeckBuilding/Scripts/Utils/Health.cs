@@ -137,6 +137,11 @@ namespace DeckBuilding
         public void ChangeHealthText()
         {
             currentHealthText.text = $"{_currentHealth}/{maxHealth}";
+            if (isPlayer)
+            {
+                UIManager.instance.UpdateHealthText();
+            }
+            
             if (blockStack>0)
             {
                 blockImage.gameObject.SetActive(true);
