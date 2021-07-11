@@ -14,7 +14,8 @@ namespace DeckBuilding.Managers
 
         [Header("Gameplay Settings")] 
         public int drawCount = 4;
-        public int mana = 3;
+        public int currentMana = 3;
+        
         public bool canUseCards = true;
         public bool canSelectCards = true;
 
@@ -124,7 +125,7 @@ namespace DeckBuilding.Managers
 
         public void IncreaseMana(int target)
         {
-            mana += target;
+            currentMana += target;
             UIManager.instance.SetPileTexts();
         }
 

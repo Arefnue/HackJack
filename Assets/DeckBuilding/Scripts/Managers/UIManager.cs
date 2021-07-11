@@ -43,7 +43,7 @@ namespace DeckBuilding.Managers
         {
             drawPileText.text = $"{HandManager.instance.drawPile.Count.ToString()}";
             discardPileText.text = $"{HandManager.instance.discardPile.Count.ToString()}";
-            manaText.text = $"{HandManager.instance.mana.ToString()}";
+            manaText.text = $"{HandManager.instance.currentMana.ToString()}/{GameManager.instance.maxMana}";
         }
 
         public void UpdateAllNotificationText()

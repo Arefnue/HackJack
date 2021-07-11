@@ -27,7 +27,7 @@ namespace DeckBuilding.Managers
         public float playerMaxHealth=100;
         public int currentGold;
         public string playerName;
-       
+        public int maxMana = 3;
         
         
         public bool isRandomHand;

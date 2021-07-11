@@ -128,7 +128,7 @@ namespace DeckBuilding.Controllers
                 var cardTransform = card.transform;
 
                 // Set to inactive material if not enough mana required to use card
-                card.SetInactiveMaterialState(HandManager.instance.mana < card.myProfile.myManaCost, inactiveCardMaterial);
+                card.SetInactiveMaterialState(HandManager.instance.currentMana < card.myProfile.myManaCost, inactiveCardMaterial);
 
                 var noCardHeld = heldCard == null; // Whether a card is "held" (outside of hand)
                 var onSelectedCard = noCardHeld && selected == i;
@@ -289,7 +289,7 @@ namespace DeckBuilding.Controllers
                         var enemy = hit.collider.gameObject.GetComponent<EnemyBase>();
                         if (enemy != null)
                         {
-                            if (HandManager.instance.canUseCards && HandManager.instance.mana >= heldCard.myProfile.myManaCost)
+                            if (HandManager.instance.canUseCards && HandManager.instance.currentMana >= heldCard.myProfile.myManaCost)
                             {
                                
                                 heldCard.UseCard(enemy);
@@ -316,7 +316,7 @@ namespace DeckBuilding.Controllers
                 }
                 else
                 {
-                    if (HandManager.instance.canUseCards && HandManager.instance.mana >= heldCard.myProfile.myManaCost)
+                    if (HandManager.instance.canUseCards && HandManager.instance.currentMana >= heldCard.myProfile.myManaCost)
                     {
                         
                         heldCard.UseCard();

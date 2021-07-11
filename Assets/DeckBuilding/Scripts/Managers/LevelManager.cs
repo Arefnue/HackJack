@@ -71,8 +71,8 @@ namespace DeckBuilding.Managers
                 case LevelState.PlayerTurn:
 
                     malfunctionController.CountMalfunction();
-                    
-                    HandManager.instance.mana = 3;
+
+                    HandManager.instance.currentMana = GameManager.instance.maxMana;
                     HandManager.instance.DrawCards(HandManager.instance.drawCount);
                     playerController.myHealth.TakeDamage(playerController.myHealth.poisonStack, true);
                     playerController.myHealth.ClearBlock();

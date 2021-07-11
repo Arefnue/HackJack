@@ -98,7 +98,7 @@ namespace DeckBuilding.Card
             }
             else
             {
-                HandManager.instance.mana -= value;
+                HandManager.instance.currentMana -= value;
             }
            
         }
