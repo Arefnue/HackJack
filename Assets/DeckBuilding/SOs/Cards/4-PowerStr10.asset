@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: 4-PowerStr10
   m_EditorClassIdentifier: 
   myID: 4
-  myTargets: 0
+  myTargets: 1
   playerActionList:
   - myPlayerActionType: 3
     value: 10
     mySoundProfile: {fileID: 11400000, guid: 426f246404d64304f9887eb7ac6a418e, type: 2}
-  myManaCost: 3
-  myName: Power Day
-  myDescription: Increase your strength by 10
-  mySprite: {fileID: 21300000, guid: 5a1ed54c53785a4478ccb33c7b0b09d0, type: 3}
+  myManaCost: 2
+  myName: Hard Work
+  myDescription: Increase strength by 10
+  mySprite: {fileID: 21300000, guid: a0c75614ede963a46af4bc352b3faabd, type: 3}

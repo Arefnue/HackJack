@@ -53,23 +53,23 @@ MonoBehaviour:
   myActions:
   - myEnemyActionType: 0
     value: 0
-    actionSprite: {fileID: 21300000, guid: f343d5cc503285f4f8722be86496e6c2, type: 3}
+    actionSprite: {fileID: -2470339811056895368, guid: 1fb0c0cb02c616d49815abb7a9a0fc0f, type: 3}
     mySoundProfile: {fileID: 0}
   - myEnemyActionType: 1
     value: 0
-    actionSprite: {fileID: 21300000, guid: e9cc0caa2c32e4b47a904d0d9965940b, type: 3}
+    actionSprite: {fileID: 5528129905629852119, guid: 1fb0c0cb02c616d49815abb7a9a0fc0f, type: 3}
     mySoundProfile: {fileID: 0}
   - myEnemyActionType: 2
     value: 0
-    actionSprite: {fileID: 21300000, guid: 3c058e96e76dab840b60e6550c8583e1, type: 3}
+    actionSprite: {fileID: -214828719786938277, guid: a707003c96586cc41b22ae32a9cdb636, type: 3}
     mySoundProfile: {fileID: 0}
   - myEnemyActionType: 3
     value: 0
-    actionSprite: {fileID: 21300000, guid: 69822eadb9caf4448adb4d2cc0301fcd, type: 3}
+    actionSprite: {fileID: -1513487178384027574, guid: a707003c96586cc41b22ae32a9cdb636, type: 3}
     mySoundProfile: {fileID: 0}
   - myEnemyActionType: 4
     value: 0
-    actionSprite: {fileID: 21300000, guid: bbd46bddd29f33e47ac1545850fddea4, type: 3}
+    actionSprite: {fileID: 1944889613778695005, guid: 1fb0c0cb02c616d49815abb7a9a0fc0f, type: 3}
     mySoundProfile: {fileID: 0}
   myHealth: {fileID: 0}
   actionImage: {fileID: 3686843824972010952}
