@@ -78,6 +78,7 @@ namespace DeckBuilding
             poisonText.gameObject.SetActive(true);
             poisonText.text =  $"{poisonStack}";
             GiveFeedback(poisonImage);
+            GiveDamageFeedback();
         }
 
         public void ApplyBlock(float stack)
@@ -126,7 +127,11 @@ namespace DeckBuilding
                 TakePoisonDamage(damage);
             }
 
-
+            if (damage>0)
+            {
+                GiveDamageFeedback();
+            }
+           
             if (_currentHealth<=0)
             {
                 _currentHealth = 0;
@@ -178,6 +183,70 @@ namespace DeckBuilding
             StartCoroutine(ImageFeedbackRoutine(targetImage));
         }
 
+        private void GiveDamageFeedback()
+        {
+            if (_isFeedbacking)
+            {
+                return;
+            }
+
+            _isFeedbacking = true;
+            StartCoroutine(DamageFeedbackRoutine());
+        }
+
+        private bool _isFeedbacking = false;
+        private IEnumerator DamageFeedbackRoutine()
+        {
+            var waitFrame = new WaitForEndOfFrame();
+            var timer = 0f;
+
+            var initalPos = transform.localPosition;
+            var targetPos = transform.localPosition;
+
+            if (isPlayer)
+            {
+                targetPos.x -= 0.05f;
+                targetPos.y -= 0.01f;
+            }
+            else
+            {
+                targetPos.x += 0.05f;
+                targetPos.y -= 0.01f;
+            }
+            
+            while (true)
+            {
+                timer += Time.deltaTime*20;
+
+                transform.localPosition = Vector3.Lerp(initalPos, targetPos, timer);
+                
+                if (timer>=1f)
+                {
+                    break;
+                }
+
+                yield return waitFrame;
+            }
+
+            timer = 0f;
+            while (true)
+            {
+                timer += Time.deltaTime*20;
+
+                transform.localPosition = Vector3.Lerp(targetPos, initalPos, timer);
+                
+                if (timer>=1f)
+                {
+                    break;
+                }
+
+                yield return waitFrame;
+            }
+
+            _isFeedbacking = false;
+
+        }
+
         private IEnumerator ImageFeedbackRoutine(Image targetImage)
         {
             var waitFrame = new WaitForEndOfFrame();
@@ -214,7 +283,6 @@ namespace DeckBuilding
 
                 yield return waitFrame;
             }
-            
         }
 
         public void ChangeHealthText()
