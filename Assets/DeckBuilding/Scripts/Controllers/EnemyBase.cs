@@ -119,6 +119,7 @@ namespace DeckBuilding.Controllers
             timer = 0f;
             AudioManager.instance.PlayOneShot(randomAction.mySoundProfile.GetRandomClip());
             LevelManager.instance.playerController.myHealth.ApplyPoisonDamage(randomAction.value);
+            FxManager.instance.PlayFx(LevelManager.instance.playerController.fxParent,FxManager.FxType.Poison);
             yield return new WaitForEndOfFrame();
             while (true)
             {
@@ -163,6 +164,7 @@ namespace DeckBuilding.Controllers
             timer = 0f;
             AudioManager.instance.PlayOneShot(randomAction.mySoundProfile.GetRandomClip());
             LevelManager.instance.playerController.myHealth.TakeDamage(randomAction.value);
+            FxManager.instance.PlayFx(LevelManager.instance.playerController.fxParent,FxManager.FxType.Attack);
             while (true)
             {
                 timer += Time.deltaTime*5;
@@ -184,11 +186,11 @@ namespace DeckBuilding.Controllers
             var timer = 0f;
 
             var startPos = transform.position;
-            var endPos = startPos+new Vector3(0,2,0);
+            var endPos = startPos+new Vector3(0,0.2f,0);
             
             while (true)
             {
-                timer += Time.deltaTime*2;
+                timer += Time.deltaTime*5;
 
                 transform.position = Vector3.Lerp(startPos, endPos, timer);
                 
@@ -201,10 +203,11 @@ namespace DeckBuilding.Controllers
             }
             AudioManager.instance.PlayOneShot(randomAction.mySoundProfile.GetRandomClip());
             myHealth.Heal(randomAction.value);
+            FxManager.instance.PlayFx(fxParent,FxManager.FxType.Heal);
             timer = 0f;
             while (true)
             {
-                timer += Time.deltaTime*2;
+                timer += Time.deltaTime*5;
 
                 transform.position = Vector3.Lerp(endPos, startPos, timer);
                 
@@ -223,11 +226,11 @@ namespace DeckBuilding.Controllers
             var timer = 0f;
 
             var startPos = transform.position;
-            var endPos = startPos+new Vector3(0,2,0);
+            var endPos = startPos+new Vector3(0,0.5f,0);
             
             while (true)
             {
-                timer += Time.deltaTime*2;
+                timer += Time.deltaTime*5;
 
                 transform.position = Vector3.Lerp(startPos, endPos, timer);
                 
@@ -240,10 +243,11 @@ namespace DeckBuilding.Controllers
             }
             AudioManager.instance.PlayOneShot(randomAction.mySoundProfile.GetRandomClip());
             myHealth.ApplyBlock(randomAction.value);
+            FxManager.instance.PlayFx(fxParent,FxManager.FxType.Block);
             timer = 0f;
             while (true)
             {
-                timer += Time.deltaTime*2;
+                timer += Time.deltaTime*5;
 
                 transform.position = Vector3.Lerp(endPos, startPos, timer);
                 
@@ -262,11 +266,11 @@ namespace DeckBuilding.Controllers
             var timer = 0f;
 
             var startPos = transform.position;
-            var endPos = startPos+new Vector3(0,2,0);
+            var endPos = startPos+new Vector3(0,0.5f,0);
             
             while (true)
             {
-                timer += Time.deltaTime*2;
+                timer += Time.deltaTime*5;
 
                 transform.position = Vector3.Lerp(startPos, endPos, timer);
                 
@@ -279,10 +283,12 @@ namespace DeckBuilding.Controllers
             }
             AudioManager.instance.PlayOneShot(randomAction.mySoundProfile.GetRandomClip());
             HandManager.instance.ExhaustRandomCard();
+            FxManager.instance.PlayFx(fxParent,FxManager.FxType.Buff);
+            FxManager.instance.PlayFx(LevelManager.instance.playerController.fxParent,FxManager.FxType.Attack);
             timer = 0f;
             while (true)
             {
-                timer += Time.deltaTime*2;
+                timer += Time.deltaTime*5;
 
                 transform.position = Vector3.Lerp(endPos, startPos, timer);
                 
