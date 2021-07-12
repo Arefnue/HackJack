@@ -75,6 +75,12 @@ namespace DeckBuilding.Managers
                     HandManager.instance.currentMana = GameManager.instance.maxMana;
                     HandManager.instance.DrawCards(HandManager.instance.drawCount);
                     playerController.myHealth.TakeDamage(playerController.myHealth.poisonStack, true);
+                    playerController.myHealth.poisonStack -= 5;
+                    if (playerController.myHealth.poisonStack <0)
+                    {
+                        playerController.myHealth.ClearPoison();
+                    }
+                    
                     playerController.myHealth.ClearBlock();
 
                     foreach (var currentEnemy in currentEnemies) currentEnemy.ShowNextAction();
@@ -85,7 +91,7 @@ namespace DeckBuilding.Managers
                 case LevelState.EnemyTurn:
 
                     HandManager.instance.DiscardHand();
-
+                    
                     StartCoroutine(nameof(EnemyTurnRoutine));
                     HandManager.instance.canSelectCards = false;
 
@@ -224,6 +230,11 @@ namespace DeckBuilding.Managers
             foreach (var currentEnemy in currentEnemies)
             {
                 currentEnemy.myHealth.TakeDamage(currentEnemy.myHealth.poisonStack, true);
+                currentEnemy.myHealth.poisonStack -= 5;
+                if (currentEnemy.myHealth.poisonStack <0)
+                {
+                    currentEnemy.myHealth.ClearPoison();
+                }
                 currentEnemy.myHealth.ClearBlock();
                 yield return currentEnemy.StartCoroutine(nameof(EnemyBase.ActionRoutine));
                 yield return waitDelay;
