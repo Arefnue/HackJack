@@ -489,9 +489,9 @@ MonoBehaviour:
     myMalfunctionType: 0
   - malfunctionName: Reverse Draw
     myMalfunctionType: 1
-  - malfunctionName: Suicidal Violence
+  - malfunctionName: Bloody Pleasure
     myMalfunctionType: 2
-  - malfunctionName: Central Concentration
+  - malfunctionName: Point of View
     myMalfunctionType: 3
   - malfunctionName: Lack of Empathy
     myMalfunctionType: 4
