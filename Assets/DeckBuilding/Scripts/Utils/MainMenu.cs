@@ -7,9 +7,14 @@ namespace DeckBuilding
 {
     public class MainMenu : MonoBehaviour
     {
+        public bool isBroken;
         private void Start()
         {
-            AudioManager.instance.PlayMusic(AudioManager.instance.bgMusic);
+            if (!isBroken)
+            {
+                AudioManager.instance.PlayMusic(AudioManager.instance.bgMusic);
+            }
+           
         }
 
         public void ExitGame()
@@ -19,8 +24,16 @@ namespace DeckBuilding
 
         public void PlayGame(int sceneIndex)
         {
-            GameManager.instance.SetInitalHand();
-            SceneManager.LoadScene(sceneIndex);
+            if (isBroken)
+            {
+                SceneManager.LoadScene(sceneIndex);
+            }
+            else
+            {
+                GameManager.instance.SetInitalHand();
+                SceneManager.LoadScene(sceneIndex);
+            }
+           
         }
 
         public void LoadScene(int sceneIndex)

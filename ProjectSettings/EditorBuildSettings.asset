@@ -12,6 +12,12 @@ EditorBuildSettings:
     path: Assets/DeckBuilding/Scenes/MainMenu.unity
     guid: d953d2e0e48f34d4f95d43083da214ce
   - enabled: 1
+    path: Assets/DeckBuilding/Scenes/Tutorial.unity
+    guid: c77d5ad88d96d02478e298141f5488c2
+  - enabled: 1
+    path: Assets/DeckBuilding/Scenes/MainMenu Broken.unity
+    guid: 9528be5b9558f724bb92b5b5a16c24e0
+  - enabled: 1
     path: Assets/DeckBuilding/Scenes/CombatScene.unity
     guid: 8bda66123e5789e4dbabe271dabf2439
   - enabled: 1

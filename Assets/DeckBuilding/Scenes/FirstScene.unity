@@ -173,10 +173,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 717693092355008224, guid: b0e65975d4fa5e2428041799ef068c83, type: 3}
-      propertyPath: initalDeck
-      value: 
-      objectReference: {fileID: 11400000, guid: 1f1db59d6dc1c1046b2ad72c336c615e, type: 2}
     - target: {fileID: 717693092355008225, guid: b0e65975d4fa5e2428041799ef068c83, type: 3}
       propertyPath: m_Name
       value: GameManager
