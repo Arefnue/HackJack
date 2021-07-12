@@ -682,6 +682,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4666622058851079916, guid: c9ebaeb56bc412c489b770ea0409f753, type: 3}
+      propertyPath: levelEnemyList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4666622058851079917, guid: c9ebaeb56bc412c489b770ea0409f753, type: 3}
       propertyPath: m_RootOrder
       value: 1

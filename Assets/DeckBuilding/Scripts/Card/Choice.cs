@@ -1,3 +1,4 @@
+using DeckBuilding.Controllers;
 using DeckBuilding.Managers;
 using UnityEngine;
 
@@ -22,6 +23,14 @@ namespace DeckBuilding.Card
             HandManager.instance.sameChoiceContainerList.Add(_myChoiceProfile.myID);
             var clone =GameManager.instance.BuildAndGetCard(_myChoiceProfile.myID,cardTransform);
             GameManager.instance.choiceContainer.Add(clone);
+            if (LevelManager.instance.malfunctionController.currentMalfunction.myMalfunctionType == MalfunctionBase.MalfunctionType.VisualDisorder)
+            {
+                foreach (var card in GameManager.instance.choiceContainer)
+                {
+                    card.Show();
+                }
+            }
+
         }
 
         public void OnChoice()

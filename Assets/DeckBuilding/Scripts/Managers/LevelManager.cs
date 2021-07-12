@@ -77,7 +77,7 @@ namespace DeckBuilding.Managers
                     HandManager.instance.currentMana = GameManager.instance.maxMana;
                     HandManager.instance.DrawCards(HandManager.instance.drawCount);
                     playerController.myHealth.TakeDamage(playerController.myHealth.poisonStack, true);
-                    playerController.myHealth.poisonStack -= 5;
+                    playerController.myHealth.poisonStack -= 2;
                     if (playerController.myHealth.poisonStack <0)
                     {
                         playerController.myHealth.ClearPoison();
@@ -197,6 +197,9 @@ namespace DeckBuilding.Managers
         {
             CurrentLevelState = LevelState.Finished;
             GameManager.instance.currentGold += Random.Range(25, 100);
+           // malfunctionController.ReleaseStatus(malfunctionController.currentMalfunction);
+
+          
             foreach (var choice in HandManager.instance.choicesList) choice.DetermineChoice();
             HandManager.instance.DiscardHand();
             HandManager.instance.discardPile.Clear();
@@ -233,7 +236,7 @@ namespace DeckBuilding.Managers
             foreach (var currentEnemy in currentEnemies)
             {
                 currentEnemy.myHealth.TakeDamage(currentEnemy.myHealth.poisonStack, true);
-                currentEnemy.myHealth.poisonStack -= 5;
+                currentEnemy.myHealth.poisonStack -= 2;
                 if (currentEnemy.myHealth.poisonStack <0)
                 {
                     currentEnemy.myHealth.ClearPoison();

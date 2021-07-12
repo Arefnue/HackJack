@@ -90,6 +90,14 @@ namespace DeckBuilding.Card
             frontImage.sprite = hideSprite;
         }
 
+        public void Show()
+        {
+            nameText.text = myProfile.myName;
+            descText.text = myProfile.myDescription;
+            manaText.text = myProfile.myManaCost.ToString();
+            frontImage.sprite = myProfile.mySprite;
+        }
+
         public void SpendMana(int value)
         {
             if (LevelManager.instance.malfunctionController.currentMalfunction.myMalfunctionType == MalfunctionBase.MalfunctionType.SuicidalViolence)

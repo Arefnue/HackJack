@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: f13c4636ae58ace48b238e6fa950b779, type: 2}
     - target: {fileID: 243822687015991123, guid: 36d8b1640cc4b9146b1bdcae06c505a1, type: 3}
       propertyPath: myActions.Array.size
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 243822687015991123, guid: 36d8b1640cc4b9146b1bdcae06c505a1, type: 3}
       propertyPath: myActions.Array.data[0].value
@@ -21,11 +21,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 243822687015991123, guid: 36d8b1640cc4b9146b1bdcae06c505a1, type: 3}
       propertyPath: myActions.Array.data[1].value
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 243822687015991123, guid: 36d8b1640cc4b9146b1bdcae06c505a1, type: 3}
       propertyPath: myActions.Array.data[2].value
-      value: 30
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 243822687015991123, guid: 36d8b1640cc4b9146b1bdcae06c505a1, type: 3}
       propertyPath: myActions.Array.data[3].value
@@ -36,9 +36,21 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 243822687015991123, guid: 36d8b1640cc4b9146b1bdcae06c505a1, type: 3}
+      propertyPath: myActions.Array.data[5].value
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 243822687015991123, guid: 36d8b1640cc4b9146b1bdcae06c505a1, type: 3}
+      propertyPath: myActions.Array.data[6].value
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 243822687015991123, guid: 36d8b1640cc4b9146b1bdcae06c505a1, type: 3}
+      propertyPath: myActions.Array.data[7].value
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 243822687015991123, guid: 36d8b1640cc4b9146b1bdcae06c505a1, type: 3}
       propertyPath: myActions.Array.data[0].actionSprite
       value: 
-      objectReference: {fileID: 21300000, guid: e9cc0caa2c32e4b47a904d0d9965940b, type: 3}
+      objectReference: {fileID: 5528129905629852119, guid: 1fb0c0cb02c616d49815abb7a9a0fc0f, type: 3}
     - target: {fileID: 243822687015991123, guid: 36d8b1640cc4b9146b1bdcae06c505a1, type: 3}
       propertyPath: myActions.Array.data[0].targetPlayer
       value: 0
@@ -46,7 +58,7 @@ PrefabInstance:
     - target: {fileID: 243822687015991123, guid: 36d8b1640cc4b9146b1bdcae06c505a1, type: 3}
       propertyPath: myActions.Array.data[1].actionSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 3c058e96e76dab840b60e6550c8583e1, type: 3}
+      objectReference: {fileID: -214828719786938277, guid: a707003c96586cc41b22ae32a9cdb636, type: 3}
     - target: {fileID: 243822687015991123, guid: 36d8b1640cc4b9146b1bdcae06c505a1, type: 3}
       propertyPath: myActions.Array.data[1].targetPlayer
       value: 1
@@ -54,7 +66,7 @@ PrefabInstance:
     - target: {fileID: 243822687015991123, guid: 36d8b1640cc4b9146b1bdcae06c505a1, type: 3}
       propertyPath: myActions.Array.data[2].actionSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 69822eadb9caf4448adb4d2cc0301fcd, type: 3}
+      objectReference: {fileID: -1513487178384027574, guid: a707003c96586cc41b22ae32a9cdb636, type: 3}
     - target: {fileID: 243822687015991123, guid: 36d8b1640cc4b9146b1bdcae06c505a1, type: 3}
       propertyPath: myActions.Array.data[2].targetPlayer
       value: 0
@@ -62,15 +74,27 @@ PrefabInstance:
     - target: {fileID: 243822687015991123, guid: 36d8b1640cc4b9146b1bdcae06c505a1, type: 3}
       propertyPath: myActions.Array.data[3].actionSprite
       value: 
-      objectReference: {fileID: 21300000, guid: bbd46bddd29f33e47ac1545850fddea4, type: 3}
+      objectReference: {fileID: 1944889613778695005, guid: 1fb0c0cb02c616d49815abb7a9a0fc0f, type: 3}
     - target: {fileID: 243822687015991123, guid: 36d8b1640cc4b9146b1bdcae06c505a1, type: 3}
       propertyPath: myActions.Array.data[4].actionSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 3c058e96e76dab840b60e6550c8583e1, type: 3}
+      objectReference: {fileID: -214828719786938277, guid: a707003c96586cc41b22ae32a9cdb636, type: 3}
     - target: {fileID: 243822687015991123, guid: 36d8b1640cc4b9146b1bdcae06c505a1, type: 3}
       propertyPath: myActions.Array.data[4].targetPlayer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 243822687015991123, guid: 36d8b1640cc4b9146b1bdcae06c505a1, type: 3}
+      propertyPath: myActions.Array.data[5].actionSprite
+      value: 
+      objectReference: {fileID: -2470339811056895368, guid: 1fb0c0cb02c616d49815abb7a9a0fc0f, type: 3}
+    - target: {fileID: 243822687015991123, guid: 36d8b1640cc4b9146b1bdcae06c505a1, type: 3}
+      propertyPath: myActions.Array.data[6].actionSprite
+      value: 
+      objectReference: {fileID: -2470339811056895368, guid: 1fb0c0cb02c616d49815abb7a9a0fc0f, type: 3}
+    - target: {fileID: 243822687015991123, guid: 36d8b1640cc4b9146b1bdcae06c505a1, type: 3}
+      propertyPath: myActions.Array.data[7].actionSprite
+      value: 
+      objectReference: {fileID: -214828719786938277, guid: a707003c96586cc41b22ae32a9cdb636, type: 3}
     - target: {fileID: 243822687015991123, guid: 36d8b1640cc4b9146b1bdcae06c505a1, type: 3}
       propertyPath: myActions.Array.data[0].mySoundProfile
       value: 
@@ -92,6 +116,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: c558e0a45b0633a4d9313997a50bb80a, type: 2}
     - target: {fileID: 243822687015991123, guid: 36d8b1640cc4b9146b1bdcae06c505a1, type: 3}
+      propertyPath: myActions.Array.data[5].mySoundProfile
+      value: 
+      objectReference: {fileID: 11400000, guid: 9c4dc29fc2148ed43a7e14bb55832e50, type: 2}
+    - target: {fileID: 243822687015991123, guid: 36d8b1640cc4b9146b1bdcae06c505a1, type: 3}
+      propertyPath: myActions.Array.data[6].mySoundProfile
+      value: 
+      objectReference: {fileID: 11400000, guid: 9c4dc29fc2148ed43a7e14bb55832e50, type: 2}
+    - target: {fileID: 243822687015991123, guid: 36d8b1640cc4b9146b1bdcae06c505a1, type: 3}
+      propertyPath: myActions.Array.data[7].mySoundProfile
+      value: 
+      objectReference: {fileID: 11400000, guid: c558e0a45b0633a4d9313997a50bb80a, type: 2}
+    - target: {fileID: 243822687015991123, guid: 36d8b1640cc4b9146b1bdcae06c505a1, type: 3}
       propertyPath: myActions.Array.data[0].myEnemyActionType
       value: 1
       objectReference: {fileID: 0}
@@ -109,6 +145,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 243822687015991123, guid: 36d8b1640cc4b9146b1bdcae06c505a1, type: 3}
       propertyPath: myActions.Array.data[4].myEnemyActionType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 243822687015991123, guid: 36d8b1640cc4b9146b1bdcae06c505a1, type: 3}
+      propertyPath: myActions.Array.data[5].myEnemyActionType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 243822687015991123, guid: 36d8b1640cc4b9146b1bdcae06c505a1, type: 3}
+      propertyPath: myActions.Array.data[7].myEnemyActionType
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 243822687015991148, guid: 36d8b1640cc4b9146b1bdcae06c505a1, type: 3}
@@ -189,7 +233,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3884688637248816172, guid: 36d8b1640cc4b9146b1bdcae06c505a1, type: 3}
       propertyPath: maxHealth
-      value: 300
+      value: 250
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36d8b1640cc4b9146b1bdcae06c505a1, type: 3}
