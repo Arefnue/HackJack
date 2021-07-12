@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DeckBuilding.Managers;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -31,6 +32,7 @@ namespace DeckBuilding.Controllers
         [HideInInspector] public Health myHealth;
         
         public Image actionImage;
+        public TextMeshProUGUI nextActionText;
         public GameObject myCanvas;
         private EnemyAction _nextAction;
         public SoundProfile deathSoundProfile;
@@ -48,7 +50,17 @@ namespace DeckBuilding.Controllers
         {
             _nextAction = myActions[Random.Range(0, myActions.Count)];
             actionImage.sprite = _nextAction.actionSprite;
+            if (_nextAction.value == -1)
+            {
+                nextActionText.gameObject.SetActive(false);
+            }
+            else
+            {
+                nextActionText.gameObject.SetActive(true);
+                nextActionText.text = _nextAction.value.ToString();
+            }
             
+
         }
         
         public void OnDeath()
@@ -226,7 +238,7 @@ namespace DeckBuilding.Controllers
             var timer = 0f;
 
             var startPos = transform.position;
-            var endPos = startPos+new Vector3(0,0.5f,0);
+            var endPos = startPos+new Vector3(0,0.2f,0);
             
             while (true)
             {
@@ -266,7 +278,7 @@ namespace DeckBuilding.Controllers
             var timer = 0f;
 
             var startPos = transform.position;
-            var endPos = startPos+new Vector3(0,0.5f,0);
+            var endPos = startPos+new Vector3(0,0.2f,0);
             
             while (true)
             {
