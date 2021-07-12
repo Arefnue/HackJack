@@ -498,7 +498,7 @@ MonoBehaviour:
   currentMalfunction:
     malfunctionName: 
     myMalfunctionType: 0
-  maxMalfunctionTurn: 5
+  maxMalfunctionTurn: 3
   malfunctionTurnCounter: 0
   myVolume: {fileID: 442049399007708715}
 --- !u!1001 &4666622059139852140

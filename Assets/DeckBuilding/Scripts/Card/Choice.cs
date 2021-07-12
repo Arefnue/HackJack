@@ -25,10 +25,7 @@ namespace DeckBuilding.Card
             GameManager.instance.choiceContainer.Add(clone);
             if (LevelManager.instance.malfunctionController.currentMalfunction.myMalfunctionType == MalfunctionBase.MalfunctionType.VisualDisorder)
             {
-                foreach (var card in GameManager.instance.choiceContainer)
-                {
-                    card.Show();
-                }
+                
             }
 
         }
