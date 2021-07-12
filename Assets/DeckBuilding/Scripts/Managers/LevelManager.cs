@@ -34,6 +34,8 @@ namespace DeckBuilding.Managers
 
         
         [HideInInspector] public List<EnemyBase> currentEnemies = new List<EnemyBase>();
+
+        
         
         public LevelState CurrentLevelState
         {

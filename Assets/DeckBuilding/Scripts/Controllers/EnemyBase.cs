@@ -35,6 +35,7 @@ namespace DeckBuilding.Controllers
         private EnemyAction _nextAction;
         public SoundProfile deathSoundProfile;
         public GameObject highlightObject;
+        public Transform fxParent;
 
         private void Awake()
         {

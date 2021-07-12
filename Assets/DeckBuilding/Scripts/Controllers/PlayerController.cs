@@ -10,6 +10,7 @@ namespace DeckBuilding.Controllers
         [HideInInspector] public Health myHealth;
        
         public GameObject playerHighlight;
+        public Transform fxParent;
         
         private void Awake()
         {

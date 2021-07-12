@@ -50,6 +50,7 @@ namespace DeckBuilding.Card
          private static void GainMana(PlayerAction playerAction)
         {
             HandManager.instance.IncreaseMana((int) playerAction.value);
+            FxManager.instance.PlayFx(LevelManager.instance.playerController.fxParent,FxManager.FxType.Buff);
         }
 
         private static void ReversePoisonToHeal(PlayerAction playerAction)
@@ -57,26 +58,31 @@ namespace DeckBuilding.Card
             var poisonCount = LevelManager.instance.playerController.myHealth.poisonStack;
             LevelManager.instance.playerController.myHealth.Heal(playerAction.value * poisonCount);
             LevelManager.instance.playerController.myHealth.ClearPoison();
+            FxManager.instance.PlayFx(LevelManager.instance.playerController.fxParent,FxManager.FxType.Heal);
         }
 
         private static void DrawCards(PlayerAction playerAction)
         {
             HandManager.instance.DrawCards((int) playerAction.value);
+            //FxManager.instance.PlayFx(LevelManager.instance.playerController.fxParent,FxManager.FxType.Buff);
         }
 
         private static void GainMaxHealth(PlayerAction playerAction)
         {
             GameManager.instance.ChangePlayerMaxHealth(playerAction.value);
+            FxManager.instance.PlayFx(LevelManager.instance.playerController.fxParent,FxManager.FxType.Buff);
         }
 
         private static void GainStrength(PlayerAction playerAction)
         {
             LevelManager.instance.playerController.myHealth.ApplyStr((int) playerAction.value);
+            FxManager.instance.PlayFx(LevelManager.instance.playerController.fxParent,FxManager.FxType.Str);
         }
 
         private static void GainBlock(PlayerAction playerAction)
         {
             LevelManager.instance.playerController.myHealth.ApplyBlock(playerAction.value);
+            FxManager.instance.PlayFx(LevelManager.instance.playerController.fxParent,FxManager.FxType.Block);
         }
 
 
@@ -84,6 +90,8 @@ namespace DeckBuilding.Card
         {
             targetEnemy.myHealth.DecreaseMaxHealth(playerAction.value);
             GameManager.instance.ChangePlayerMaxHealth(playerAction.value);
+            FxManager.instance.PlayFx(LevelManager.instance.playerController.fxParent,FxManager.FxType.Buff);
+            FxManager.instance.PlayFx(targetEnemy.fxParent,FxManager.FxType.Attack);
         }
 
         private static void ReversePoisonToDamage(EnemyBase targetEnemy, PlayerAction playerAction)
@@ -91,16 +99,20 @@ namespace DeckBuilding.Card
             var poisonCount = LevelManager.instance.playerController.myHealth.poisonStack;
             targetEnemy.myHealth.TakeDamage(playerAction.value * poisonCount);
             LevelManager.instance.playerController.myHealth.ClearPoison();
+            FxManager.instance.PlayFx(LevelManager.instance.playerController.fxParent,FxManager.FxType.Buff);
+            FxManager.instance.PlayFx(targetEnemy.fxParent,FxManager.FxType.Attack);
         }
 
         private static void HealPlayer(PlayerAction playerAction)
         {
             LevelManager.instance.playerController.myHealth.Heal(playerAction.value);
+            FxManager.instance.PlayFx(LevelManager.instance.playerController.fxParent,FxManager.FxType.Heal);
         }
 
         private static void AttackTargetEnemy(EnemyBase targetEnemy, PlayerAction playerAction)
         {
             targetEnemy.myHealth.TakeDamage(playerAction.value + LevelManager.instance.playerController.myHealth.bonusStr);
+            FxManager.instance.PlayFx(targetEnemy.fxParent,FxManager.FxType.Attack);
         }
 
         #endregion
