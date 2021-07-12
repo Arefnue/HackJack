@@ -33,7 +33,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 243822687015991123, guid: 36d8b1640cc4b9146b1bdcae06c505a1, type: 3}
       propertyPath: myActions.Array.data[4].value
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 243822687015991123, guid: 36d8b1640cc4b9146b1bdcae06c505a1, type: 3}
       propertyPath: myActions.Array.data[5].value
@@ -45,7 +45,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 243822687015991123, guid: 36d8b1640cc4b9146b1bdcae06c505a1, type: 3}
       propertyPath: myActions.Array.data[7].value
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 243822687015991123, guid: 36d8b1640cc4b9146b1bdcae06c505a1, type: 3}
       propertyPath: myActions.Array.data[0].actionSprite
