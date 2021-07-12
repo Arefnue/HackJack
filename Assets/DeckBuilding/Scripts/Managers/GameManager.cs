@@ -16,10 +16,10 @@ namespace DeckBuilding.Managers
         public CardBase cardPrefab;
         
         [Header("Decks")]
-        public List<int> initalDeckList;
+        //public List<int> initalDeckList = new List<int>();
         public List<int> myDeckIDList = new List<int>();
-        
-        
+        public DeckSO initalDeck;
+
         public List<CardSO> choiceCardList;
         [HideInInspector] public List<CardBase> choiceContainer = new List<CardBase>();
         
@@ -89,7 +89,10 @@ namespace DeckBuilding.Managers
             else
             {
                 myDeckIDList.Clear();
-                myDeckIDList = initalDeckList;
+                foreach (var card in initalDeck.cards)
+                {
+                    myDeckIDList.Add(card.myID);
+                }
             }
         }
         public void ResetManager()
@@ -107,8 +110,12 @@ namespace DeckBuilding.Managers
             LevelManager.instance.playerController.myHealth.ChangeHealthText();
         }
 
-        
 
+        public void ChangeScene(int target)
+        {
+            SceneManager.LoadScene(target);
+        }
+        
         public int GetCurrentLevel()
         {
             return SceneManager.GetActiveScene().buildIndex-1;
@@ -121,7 +128,7 @@ namespace DeckBuilding.Managers
             if (i>=SceneManager.sceneCountInBuildSettings)
             {
                 GameManager.instance.ResetManager();
-                SceneManager.LoadScene(0);
+                SceneManager.LoadScene(1);
             }
             else
             {

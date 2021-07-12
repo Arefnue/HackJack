@@ -97,7 +97,7 @@ namespace DeckBuilding.Managers
         public void MainMenu()
         {
             GameManager.instance.ResetManager();
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
     }
 }
