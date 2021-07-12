@@ -225,9 +225,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myHealth: {fileID: 0}
-  bonusStr: 0
-  strImage: {fileID: 7494123425884599789}
-  strText: {fileID: 5333163693761515267}
   playerHighlight: {fileID: 2822458438677861863}
 --- !u!65 &1757283783
 BoxCollider:
@@ -279,6 +276,9 @@ MonoBehaviour:
   poisonText: {fileID: 4600310599746614185}
   poisonStack: 0
   blockStack: 0
+  bonusStr: 0
+  strImage: {fileID: 7494123425884599789}
+  strText: {fileID: 5333163693761515267}
 --- !u!114 &7108149017518371994
 MonoBehaviour:
   m_ObjectHideFlags: 0

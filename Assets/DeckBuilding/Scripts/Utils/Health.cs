@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using DeckBuilding.Controllers;
 using DeckBuilding.Managers;
 using TMPro;
@@ -21,8 +22,13 @@ namespace DeckBuilding
         
         public Action deathAction;
 
-        public float poisonStack;
-        public float blockStack;
+        [HideInInspector] public float poisonStack;
+        [HideInInspector] public float blockStack;
+        
+        [HideInInspector] public float bonusStr=0;
+
+        public Image strImage;
+        public TextMeshProUGUI strText;
 
         private void Start()
         {
@@ -35,12 +41,30 @@ namespace DeckBuilding
             {
                 _currentHealth = maxHealth;
             }
+            
+            ClearStr();
             ClearBlock();
             ClearPoison();
             ChangeHealthText();
            
         }
 
+        private void ClearStr()
+        {
+            bonusStr = 0;
+            strImage.gameObject.SetActive(false);
+            strText.gameObject.SetActive(false);
+        }
+
+        public void ApplyStr(int bonus)
+        {
+            bonusStr += bonus;
+            strImage.gameObject.SetActive(true);
+            strText.gameObject.SetActive(true);
+            strText.text = bonusStr.ToString();
+            GiveFeedback(strImage);
+        }
+        
         public void SavePlayerStats()
         {
             GameManager.instance.playerCurrentHealth = _currentHealth;
@@ -53,12 +77,14 @@ namespace DeckBuilding
             poisonImage.gameObject.SetActive(true);
             poisonText.gameObject.SetActive(true);
             poisonText.text =  $"{poisonStack}";
+            GiveFeedback(poisonImage);
         }
 
         public void ApplyBlock(float stack)
         {
             blockStack += stack;
             ChangeHealthText();
+            GiveFeedback(blockImage);
         }
         
         public void DecreaseMaxHealth(float value)
@@ -93,23 +119,11 @@ namespace DeckBuilding
             
             if (!isPoison)
             {
-                if (blockStack>0)
-                {
-                    blockStack -= damage;
-                    if (blockStack<0)
-                    {
-                        _currentHealth -= Mathf.Abs(blockStack);
-                    }
-                }
-                else
-                {
-                    _currentHealth -= damage;
-                }
-               
+                TakeNormalDamage(damage);
             }
             else
             {
-                _currentHealth -= damage;
+                TakePoisonDamage(damage);
             }
 
 
@@ -121,7 +135,30 @@ namespace DeckBuilding
             }
             ChangeHealthText();
         }
-        
+
+        private void TakeNormalDamage(float damage)
+        {
+            if (blockStack > 0)
+            {
+                blockStack -= damage;
+                if (blockStack < 0)
+                {
+                    _currentHealth -= Mathf.Abs(blockStack);
+                    GiveFeedback(blockImage);
+                }
+            }
+            else
+            {
+                _currentHealth -= damage;
+            }
+        }
+
+        private void TakePoisonDamage(float damage)
+        {
+            _currentHealth -= damage;
+            GiveFeedback(poisonImage);
+        }
+
         public void Heal(float healValue)
         {
             if (_isDead)
@@ -134,6 +171,50 @@ namespace DeckBuilding
                 _currentHealth = maxHealth;
             }
             ChangeHealthText();
+        }
+
+        private void GiveFeedback(Image targetImage)
+        {
+            StartCoroutine(ImageFeedbackRoutine(targetImage));
+        }
+
+        private IEnumerator ImageFeedbackRoutine(Image targetImage)
+        {
+            var waitFrame = new WaitForEndOfFrame();
+            var timer = 0f;
+
+            var initalScale = targetImage.transform.localScale;
+            var targetScale = initalScale * 1.15f;
+            
+            while (true)
+            {
+                timer += Time.deltaTime*10;
+
+                targetImage.transform.localScale = Vector3.Lerp(initalScale, targetScale, timer);
+                
+                if (timer>=1f)
+                {
+                    break;
+                }
+
+                yield return waitFrame;
+            }
+
+            timer = 0f;
+            while (true)
+            {
+                timer += Time.deltaTime*10;
+
+                targetImage.transform.localScale = Vector3.Lerp(targetScale, initalScale, timer);
+                
+                if (timer>=1f)
+                {
+                    break;
+                }
+
+                yield return waitFrame;
+            }
+            
         }
 
         public void ChangeHealthText()

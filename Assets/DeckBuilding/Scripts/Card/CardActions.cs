@@ -71,7 +71,7 @@ namespace DeckBuilding.Card
 
         private static void GainStrength(PlayerAction playerAction)
         {
-            LevelManager.instance.playerController.IncreaseStr((int) playerAction.value);
+            LevelManager.instance.playerController.myHealth.ApplyStr((int) playerAction.value);
         }
 
         private static void GainBlock(PlayerAction playerAction)
@@ -100,7 +100,7 @@ namespace DeckBuilding.Card
 
         private static void AttackTargetEnemy(EnemyBase targetEnemy, PlayerAction playerAction)
         {
-            targetEnemy.myHealth.TakeDamage(playerAction.value + LevelManager.instance.playerController.bonusStr);
+            targetEnemy.myHealth.TakeDamage(playerAction.value + LevelManager.instance.playerController.myHealth.bonusStr);
         }
 
         #endregion
