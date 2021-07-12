@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: EnemyDeathProfile
   m_EditorClassIdentifier: 
   randomClipList:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: a313ed4d53d8738499042116087ad4d6, type: 3}

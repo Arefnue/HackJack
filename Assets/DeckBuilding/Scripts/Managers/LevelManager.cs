@@ -194,6 +194,7 @@ namespace DeckBuilding.Managers
         private void OnChoiceStart()
         {
             CurrentLevelState = LevelState.Finished;
+            GameManager.instance.currentGold += Random.Range(25, 100);
             foreach (var choice in HandManager.instance.choicesList) choice.DetermineChoice();
             HandManager.instance.DiscardHand();
             HandManager.instance.discardPile.Clear();

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: ButtonProfile
   m_EditorClassIdentifier: 
   randomClipList:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 68064d3951a58df489da75f89596e84f, type: 3}

@@ -98,6 +98,7 @@ namespace DeckBuilding.Managers
             choiceContainer?.Clear();
             playerCurrentHealth = 100;
             playerMaxHealth = 100;
+            currentGold = 0;
         }
         public void ChangePlayerMaxHealth(float value)
         {

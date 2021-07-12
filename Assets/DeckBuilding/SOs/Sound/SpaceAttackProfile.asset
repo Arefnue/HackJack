@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: SpaceAttackProfile
   m_EditorClassIdentifier: 
   randomClipList:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 42c003e7f26ca034f9c40089b30ed50d, type: 3}

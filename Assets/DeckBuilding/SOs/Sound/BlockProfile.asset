@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: BlockProfile
   m_EditorClassIdentifier: 
   randomClipList:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 265e705b338b5bd49ac6fddd96565c3f, type: 3}
+  - {fileID: 8300000, guid: d0da30f17bcda254584a0918a4f4fbb3, type: 3}

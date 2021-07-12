@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PoisonProfile
   m_EditorClassIdentifier: 
   randomClipList:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: b283da89be46599419c87188bbebe365, type: 3}

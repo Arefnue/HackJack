@@ -49,8 +49,8 @@ MonoBehaviour:
   musicSource: {fileID: 7710606986531930512}
   sfxSource: {fileID: 7710606986531930513}
   buttonSource: {fileID: 3673619364212810684}
-  bgMusic: {fileID: 8300000, guid: d2da84d1325f3974a9cfd370dcd218de, type: 3}
-  bossMusic: {fileID: 8300000, guid: 990a5fef8f1cde04a96c41ae453ed836, type: 3}
+  bgMusic: {fileID: 8300000, guid: ad1eb00cf51018a4189216af1d5bda80, type: 3}
+  bossMusic: {fileID: 8300000, guid: b7670817a8b89f941abad9df4e091047, type: 3}
 --- !u!82 &7710606986531930512
 AudioSource:
   m_ObjectHideFlags: 0

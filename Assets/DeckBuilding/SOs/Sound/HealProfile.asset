@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: HealProfile
   m_EditorClassIdentifier: 
   randomClipList:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: c3fc4a0d60c1c6d43a656aac0b9d145c, type: 3}
