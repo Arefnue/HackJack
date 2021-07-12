@@ -118,7 +118,7 @@ namespace DeckBuilding.Managers
         
         public int GetCurrentLevel()
         {
-            return SceneManager.GetActiveScene().buildIndex-1;
+            return SceneManager.GetActiveScene().buildIndex-3;
         }
         public void NextLevel()
         {
