@@ -334,10 +334,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1640238216}
-        m_TargetAssemblyTypeName: Arif.Scripts.MainMenu, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 3
+      - m_Target: {fileID: 2388636854935074175}
+        m_TargetAssemblyTypeName: DeckBuilding.Managers.UIManager, Assembly-CSharp
+        m_MethodName: MainMenu
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -553,7 +553,6 @@ GameObject:
   - component: {fileID: 1640238219}
   - component: {fileID: 1640238218}
   - component: {fileID: 1640238217}
-  - component: {fileID: 1640238216}
   m_Layer: 5
   m_Name: WinCanvas
   m_TagString: Untagged
@@ -643,19 +642,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &1640238216
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1640238214}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a27ea1ac22714e46ad08a96dc025cec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isBroken: 0
 --- !u!1 &1825651312
 GameObject:
   m_ObjectHideFlags: 0
@@ -2773,21 +2759,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4208371463857601490}
-        m_TargetAssemblyTypeName: Arif.Scripts.MainMenu, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 3
+      - m_Target: {fileID: 7012997552454064222}
+        m_TargetAssemblyTypeName: Arif.Scripts.PlaySound, Assembly-CSharp
+        m_MethodName: PlayButton
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 7012997552454064222}
-        m_TargetAssemblyTypeName: Arif.Scripts.PlaySound, Assembly-CSharp
-        m_MethodName: PlayButton
+      - m_Target: {fileID: 2388636854935074175}
+        m_TargetAssemblyTypeName: DeckBuilding.Managers.UIManager, Assembly-CSharp
+        m_MethodName: MainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3415,7 +3401,6 @@ GameObject:
   - component: {fileID: 3967015172606845590}
   - component: {fileID: 6724004957706887077}
   - component: {fileID: 7356670144495402627}
-  - component: {fileID: 4208371463857601490}
   m_Layer: 5
   m_Name: LoseCanvas
   m_TagString: Untagged
@@ -3505,19 +3490,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &4208371463857601490
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6887330766438226079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a27ea1ac22714e46ad08a96dc025cec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isBroken: 0
 --- !u!1 &7026062852064330745
 GameObject:
   m_ObjectHideFlags: 0

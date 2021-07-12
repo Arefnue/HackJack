@@ -91,11 +91,7 @@ namespace DeckBuilding.Managers
             {
                 LevelManager.instance.EndTurn();
             }
-            else
-            {
-                Debug.Log("AAA");
-            }
-            
+
         }
 
         public void MainMenu()

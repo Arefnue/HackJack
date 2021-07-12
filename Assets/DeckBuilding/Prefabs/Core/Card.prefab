@@ -261,6 +261,7 @@ MonoBehaviour:
   manaText: {fileID: 3660415334001918324}
   frontImage: {fileID: 8603284245693264279}
   backImage: {fileID: 8593444577226125877}
+  hideSprite: {fileID: 0}
   myProfile: {fileID: 11400000, guid: 97392c824000e4049a6299b2cef0e84d, type: 2}
 --- !u!1 &3677811352146201060
 GameObject:
@@ -289,7 +290,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3677811352146201060}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.027}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children:
   - {fileID: 8778808009130753548}
