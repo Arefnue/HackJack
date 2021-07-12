@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DeckBuilding.Managers;
 using NueExtentions;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace DeckBuilding.Controllers
 {
@@ -15,9 +17,58 @@ namespace DeckBuilding.Controllers
         public int maxMalfunctionTurn = 5;
         [HideInInspector] public int malfunctionTurnCounter;
 
+        public Volume myVolume;
+        private bool _changeMalfunction=false;
         private void Awake()
         {
-            //currentMalfunction = allMalfunctions[0];
+            myVolume.weight = 0;
+        }
+
+
+        private IEnumerator MalfunctionChange()
+        {
+            var waitFrame = new WaitForEndOfFrame();
+            var timer = 0f;
+
+            
+            UIManager.instance.gameCanvas.SetActive(false);
+            HandManager.instance.handController.cam.gameObject.SetActive(false);
+            
+            while (true)
+            {
+                timer += Time.deltaTime;
+
+                myVolume.weight = Mathf.Lerp(0, 1, timer);
+                
+                
+                if (timer>=1f)
+                {
+                    break;
+                }
+
+                yield return waitFrame;
+            }
+            
+            timer = 0f;
+            while (true)
+            {
+                timer += Time.deltaTime*10f;
+
+                myVolume.weight = Mathf.Lerp(1, 0, timer);
+                
+                
+                if (timer>=1f)
+                {
+                    break;
+                }
+
+                yield return waitFrame;
+            }
+            
+            UIManager.instance.gameCanvas.SetActive(true);
+            HandManager.instance.handController.cam.gameObject.SetActive(true);
+            //LevelManager.instance.CurrentLevelState = LevelManager.LevelState.PlayerTurn;
+
         }
 
         public void CountMalfunction()
@@ -27,7 +78,10 @@ namespace DeckBuilding.Controllers
             {
                 malfunctionTurnCounter = maxMalfunctionTurn;
                 GetRandomMalfunction();
+                StartCoroutine(nameof(MalfunctionChange));
             }
+            
+            
             UIManager.instance.UpdateMalfunctionCounter();
         }
         

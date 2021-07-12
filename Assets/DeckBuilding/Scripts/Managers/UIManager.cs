@@ -87,11 +87,15 @@ namespace DeckBuilding.Managers
 
         public void EndTurn()
         {
-            if (LevelManager.instance.CurrentLevelState != LevelManager.LevelState.PlayerTurn)
+            if (LevelManager.instance.CurrentLevelState == LevelManager.LevelState.PlayerTurn)
             {
-                return;
+                LevelManager.instance.EndTurn();
             }
-            LevelManager.instance.EndTurn();
+            else
+            {
+                Debug.Log("AAA");
+            }
+            
         }
 
         public void MainMenu()

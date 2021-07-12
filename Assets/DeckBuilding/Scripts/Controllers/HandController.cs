@@ -22,7 +22,7 @@ namespace DeckBuilding.Controllers
         [SerializeField] private Vector2 handOffset = new Vector2(0, -0.3f), handSize = new Vector2(9, 1.7f);
 
         [Header("References")] 
-        [SerializeField] private Camera cam = null;
+        public Camera cam = null;
 
         [SerializeField] private Material inactiveCardMaterial = null;
 

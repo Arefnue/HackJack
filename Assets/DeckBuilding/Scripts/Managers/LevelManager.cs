@@ -71,8 +71,8 @@ namespace DeckBuilding.Managers
                     break;
                 case LevelState.PlayerTurn:
 
+                    
                     malfunctionController.CountMalfunction();
-
                     HandManager.instance.currentMana = GameManager.instance.maxMana;
                     HandManager.instance.DrawCards(HandManager.instance.drawCount);
                     playerController.myHealth.TakeDamage(playerController.myHealth.poisonStack, true);
@@ -102,6 +102,7 @@ namespace DeckBuilding.Managers
                     HandManager.instance.canSelectCards = false;
 
                     break;
+               
                 default:
                     throw new ArgumentOutOfRangeException(nameof(value), value, null);
             }
@@ -141,130 +142,6 @@ namespace DeckBuilding.Managers
         }
 
 
-        [Header("Fake")] public GameObject chestSprite;
-        public Transform chestSpawnTransform;
-        public Transform hackFakeTransform;
-        public Transform hackMoveTransform;
-        public Transform jackMoveTransform;
-        public Sprite hurtSprite;
-        public Transform hackRunTransform;
-
-        private GameObject _gift;
-        private IEnumerator FakeAnimation()
-        {
-            var waitFrame = new WaitForEndOfFrame();
-            var timer = 0f;
-
-            _gift = Instantiate(chestSprite.gameObject, chestSpawnTransform);
-            //ödül çıkar
-            while (true)
-            {
-                timer += Time.deltaTime;
-
-                
-                _gift.transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, timer);
-                
-                if (timer>=1f)
-                {
-                    break;
-                }
-
-                yield return waitFrame;
-            }
-
-            timer = 0f;
-
-            var playerStartPos = playerController.transform.position;
-            var playerTargetPos = jackMoveTransform.position;
-
-            var hackStartPos = hackFakeTransform.position;
-            var hackTargetPos = hackMoveTransform.position;
-            //hack ve jack ödüle gider
-            while (true)
-            {
-                timer += Time.deltaTime*2;
-
-
-                playerController.transform.position = Vector3.Lerp(playerStartPos, playerTargetPos, timer);
-                hackFakeTransform.position = Vector3.Lerp(hackStartPos, hackTargetPos, timer);
-                
-                if (timer>=1f)
-                {
-                    break;
-                }
-                
-                yield return waitFrame;
-            }
-
-            timer = 0f;
-
-
-            var hackLocalScaleStart = hackFakeTransform.localScale;
-            var hackLocalScaleEnd = hackLocalScaleStart * 1.1f;
-            //hcak ödülü sever
-            while (true)
-            {
-                timer += Time.deltaTime*2;
-
-
-                hackFakeTransform.localScale = Vector3.Lerp(hackLocalScaleStart, hackLocalScaleEnd, timer);
-                
-                if (timer>=1f)
-                {
-                    break;
-                }
-
-                yield return waitFrame;
-            }
-
-            yield return new WaitForSeconds(0.5f);
-            timer = 0f;
-
-            var hackSprite = hackFakeTransform.GetComponent<SpriteRenderer>();
-            var hackRotStart = hackFakeTransform.localRotation;
-            var targetRot = Quaternion.Euler(new Vector3(15, 0, 0));
-            hackSprite.flipX = !hackSprite.flipX;
-            //hack bize ihanet eder
-            while (true)
-            {
-                timer += Time.deltaTime * 2f;
-                hackFakeTransform.localRotation = Quaternion.Lerp(hackRotStart,targetRot,timer);
-                
-                if (timer>=1f)
-                {
-                    break;
-                }
-
-                yield return waitFrame;
-            }
-
-            timer = 0f;
-            FxManager.instance.PlayFx(playerController.transform,FxManager.FxType.Attack);
-
-            var hackS = hackFakeTransform.position;
-            var targetS = hackRunTransform.position;
-            _gift.transform.SetParent(hackFakeTransform);
-            
-            //yaralanırız
-            while (true)
-            {
-                timer += Time.deltaTime * 2f;
-
-                hackFakeTransform.position = Vector3.Lerp(hackS, targetS, timer);
-                _gift.transform.localScale = Vector3.Lerp(Vector3.one, Vector3.zero, timer);
-                if (timer>=1f)
-                {
-                    break;
-                }
-
-                yield return waitFrame;
-            }
-
-            yield return new WaitForSeconds(1f);
-            GameManager.instance.ChangeScene(3);
-            timer = 0f;
-
-        }
         
         
         public void LoseGame()
